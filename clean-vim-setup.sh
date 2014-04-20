@@ -10,6 +10,11 @@ if [ -f ~/.vimrc ]; then
 	mv ~/.vimrc ~/.vimrc-old-$$
 fi
 
+if [ -f ~/.gvimrc ]; then
+	echo Moving old ~/.gvimrc file to ~/.gvimrc-old-$$
+	mv ~/.gvimrc ~/.gvimrc-old-$$
+fi
+
 echo Creating bundle directory.
 mkdir -p ~/.vim/bundle
 
