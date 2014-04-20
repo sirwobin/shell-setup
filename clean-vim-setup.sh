@@ -29,4 +29,7 @@ git clone git@github.com:guns/vim-clojure-static.git
 git clone git://github.com/tpope/vim-fireplace.git
 git clone git@github.com:tpope/vim-pathogen.git
 
+echo Fetching .vimrc from git
+curl -LSso ~/.vimrc https://github.com/robingl/vim-config/raw/master/vimrc
 
+echo Done.
