@@ -10,6 +10,8 @@ set number
 set wildmode=full
 set guifont=Courier\ New:h14
 let mapleader = ','
+command BigFont set guifont=Courier\ New:h16
+command SmallFont set guifont=Courier\ New:h14
 
 " To change tab using Cmd-{ and Cmd-}
 " macm Window.Select\ Previous\ Tab  key=<D-S-Left>
