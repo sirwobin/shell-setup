@@ -38,6 +38,9 @@ imap <D-4> <C-O>4gt
 imap <D-5> <C-O>5gt
 imap <D-6> <C-O>6gt
 
+" Ctrl-Space now omnicompletes as well
+inoremap <C-Space> <C-x><C-o>
+
 " Rainbow parens
 let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
