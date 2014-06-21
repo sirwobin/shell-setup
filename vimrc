@@ -9,6 +9,9 @@ set guitablabel=%M%t
 set number
 set wildmode=full
 set guifont=Courier\ New:h14
+set cindent
+set shiftwidth=2
+set expandtab
 let mapleader = ','
 command BigFont set guifont=Courier\ New:h16
 command SmallFont set guifont=Courier\ New:h14
