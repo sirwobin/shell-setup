@@ -16,6 +16,8 @@ let mapleader = ','
 command BigFont set guifont=Courier\ New:h16
 command SmallFont set guifont=Courier\ New:h14
 
+" behave mswin
+
 " To change tab using Cmd-{ and Cmd-}
 " macm Window.Select\ Previous\ Tab  key=<D-S-Left>
 " macm Window.Select\ Next\ Tab  key=<D-S-Right>
