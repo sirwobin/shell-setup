@@ -33,4 +33,7 @@ git clone git@github.com:tpope/vim-pathogen.git
 echo Fetching .vimrc from git
 curl -LSso ~/.vimrc https://github.com/robingl/vim-config/raw/master/vimrc
 
-echo Done.
+echo Fetching Inconsolata font for Powerline
+curl -LSso "Inconsolata for Powerline.otf" "https://github.com/Lokaltog/powerline-fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf?raw=true"
+
+echo Done.  Remember to install the font.
