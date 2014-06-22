@@ -8,35 +8,43 @@ filetype plugin indent on
 set guitablabel=%M%t
 set number
 set wildmode=full
-set guifont=Courier\ New:h14
+set guifont=Inconsolata\ for\ Powerline:h16
 set cindent
 set shiftwidth=2
 set expandtab
 let mapleader = ','
-command BigFont set guifont=Courier\ New:h16
-command SmallFont set guifont=Courier\ New:h14
+command BigFont set guifont=Inconsolata\ for\ Powerline:h16
+command SmallFont set guifont=Inconsolata\ for\ Powerline:h14
 
-" behave mswin
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#fnamecollapse = 0
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_powerline_fonts = 1
+" Show the status line
+set laststatus=2
 
-" To change tab using Cmd-{ and Cmd-}
-" macm Window.Select\ Previous\ Tab  key=<D-S-Left>
-" macm Window.Select\ Next\ Tab  key=<D-S-Right>
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 
-" Map Cmd-Number to go to that tab number
-map <D-1> 1gt
-map <D-2> 2gt
-map <D-3> 3gt
-map <D-4> 4gt
-map <D-5> 5gt
-map <D-6> 6gt
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
-" Map Cmd-Number to go to that tab number when in insert mode too.
-imap <D-1> <C-O>1gt
-imap <D-2> <C-O>2gt
-imap <D-3> <C-O>3gt
-imap <D-4> <C-O>4gt
-imap <D-5> <C-O>5gt
-imap <D-6> <C-O>6gt
+" Apple-1 save and go to previous buffer
+nnoremap <D-1> :w<Enter>:bp<Enter>
+inoremap <D-1> <Esc>:w<Enter>:bp<Enter>
+" Apple-2 save and go to next buffer
+nnoremap <D-2> :w<Enter>:bn<Enter>
+inoremap <D-2> <Esc>:w<Enter>:bn<Enter>
+" Apple-3 save and close buffer in command mode only.
+nnoremap <D-3> :w<Enter>:bd<Enter>
 
 " Ctrl-Space now omnicompletes as well
 inoremap <C-Space> <C-x><C-o>
