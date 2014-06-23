@@ -13,8 +13,8 @@ set cindent
 set shiftwidth=2
 set expandtab
 let mapleader = ','
-command BigFont set guifont=Inconsolata\ for\ Powerline:h16
-command SmallFont set guifont=Inconsolata\ for\ Powerline:h14
+command BigFont set guifont=Inconsolata\ for\ Powerline:h22
+command SmallFont set guifont=Inconsolata\ for\ Powerline:h16
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
