@@ -15,6 +15,7 @@ set expandtab
 let mapleader = ','
 command BigFont set guifont=Inconsolata\ for\ Powerline:h22
 command SmallFont set guifont=Inconsolata\ for\ Powerline:h16
+command FixTrailingSpaces %s/\s\+$//
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
