@@ -31,6 +31,7 @@ git clone git@github.com:guns/vim-clojure-static.git
 git clone git@github.com:jordwalke/flatlandia.git
 git clone git@github.com:bling/vim-airline.git
 git clone git@github.com:tpope/vim-fugitive.git
+git clone git@github.com:rking/ag.vim.git
 
 echo Fetching .vimrc from git
 curl -LSso ~/.vimrc https://github.com/robingl/vim-config/raw/master/vimrc
