@@ -38,6 +38,12 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor
+    " add --hidden to include hidden files in ctrlp file list.
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
 " Apple-1 save and go to previous buffer
 nnoremap <D-1> :w<Enter>:bp<Enter>
 inoremap <D-1> <Esc>:w<Enter>:bp<Enter>
