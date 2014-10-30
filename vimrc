@@ -12,6 +12,9 @@ set guifont=Inconsolata\ for\ Powerline:h16
 set cindent
 set shiftwidth=2
 set expandtab
+set incsearch
+set hlsearch
+set cursorline
 let mapleader = ','
 command BigFont set guifont=Inconsolata\ for\ Powerline:h22
 command SmallFont set guifont=Inconsolata\ for\ Powerline:h16
