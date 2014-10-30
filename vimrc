@@ -15,6 +15,8 @@ set expandtab
 set incsearch
 set hlsearch
 set cursorline
+" originally highlight CursorLine term=underline ctermbg=238 guibg=#2d3033 guisp=#36393c
+highlight CursorLine term=underline ctermbg=238 guibg=#4C4C4C guisp=#36393c
 let mapleader = ','
 command BigFont set guifont=Inconsolata\ for\ Powerline:h22
 command SmallFont set guifont=Inconsolata\ for\ Powerline:h16
