@@ -21,13 +21,13 @@ let mapleader = ','
 command BigFont set guifont=Inconsolata\ for\ Powerline:h22
 command SmallFont set guifont=Inconsolata\ for\ Powerline:h16
 command FixTrailingSpaces %s/\s\+$//
+nnoremap <Leader>0 :nohl<Enter>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#fnamecollapse = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_powerline_fonts = 1
 " Show the status line
 set laststatus=2
 
@@ -35,13 +35,16 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+if has("gui_running")
+  let g:airline_powerline_fonts = 1
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+endif
 
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor
@@ -51,12 +54,15 @@ endif
 
 " Apple-1 save and go to previous buffer
 nnoremap <D-1> :w<Enter>:bp<Enter>
+nnoremap <Leader>1 :w<Enter>:bp<Enter>
 inoremap <D-1> <Esc>:w<Enter>:bp<Enter>
 " Apple-2 save and go to next buffer
 nnoremap <D-2> :w<Enter>:bn<Enter>
+nnoremap <Leader>2 :w<Enter>:bn<Enter>
 inoremap <D-2> <Esc>:w<Enter>:bn<Enter>
 " Apple-3 save and close buffer in command mode only.
 nnoremap <D-3> :w<Enter>:bd<Enter>
+nnoremap <Leader>3 :w<Enter>:bd<Enter>
 
 " Ctrl-Space now omnicompletes as well
 inoremap <C-Space> <C-x><C-o>
