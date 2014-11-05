@@ -22,6 +22,8 @@ command BigFont set guifont=Inconsolata\ for\ Powerline:h22
 command SmallFont set guifont=Inconsolata\ for\ Powerline:h16
 command FixTrailingSpaces %s/\s\+$//
 nnoremap <Leader>0 :nohl<Enter>
+nnoremap <Leader>f :set fullscreen<Enter>
+nnoremap <Leader>F :set nofullscreen<Enter>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
