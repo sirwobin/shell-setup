@@ -73,7 +73,7 @@ inoremap <C-Space> <C-x><C-o>
 
 " Rainbow parens
 let g:rbpt_loadcmd_toggle = 0
-au VimEnter * RainbowParenthesesToggle
+au VimEnter * RainbowParenthesesActivate
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
