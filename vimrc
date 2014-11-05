@@ -24,6 +24,7 @@ command FixTrailingSpaces %s/\s\+$//
 nnoremap <Leader>0 :nohl<Enter>
 nnoremap <Leader>f :set fullscreen<Enter>
 nnoremap <Leader>F :set nofullscreen<Enter>
+nnoremap <Leader>s /<C-R><C-W><Enter>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
