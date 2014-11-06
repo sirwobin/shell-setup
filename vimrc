@@ -39,7 +39,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-if echo has('clipboard')
+if has('clipboard')
   set clipboard=unnamed
 endif
 
