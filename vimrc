@@ -37,6 +37,10 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 set laststatus=2  " Show the status line
 
+if has('clipboard')
+  set clipboard=unnamed
+endif
+
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
