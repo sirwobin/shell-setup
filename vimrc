@@ -26,6 +26,8 @@ nnoremap <Leader>0 :nohl<Enter>
 nnoremap <Leader>f :set fullscreen<Enter>
 nnoremap <Leader>F :set nofullscreen<Enter>
 nnoremap <Leader>s /<C-R><C-W><Enter>
+nnoremap <Leader>t :NERDTreeToggle<Enter>
+imap jj <Esc>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -37,10 +39,6 @@ set laststatus=2
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
-endif
-
-if has('clipboard')
-  set clipboard=unnamed
 endif
 
 if has("gui_running")
