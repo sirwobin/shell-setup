@@ -45,11 +45,11 @@ if has("gui_running")
   set guitablabel=%M%t
 
   if has("gui_gnome")
-    set guifont=Inconsolata\ for\ Powerline\ 16
+    set guifont=Inconsolata\ for\ Powerline\ 14
 
-    command BigFont set guifont=Inconsolata\ for\ Powerline\ 22
-    command MidFont set guifont=Inconsolata\ for\ Powerline\ 18
-    command SmallFont set guifont=Inconsolata\ for\ Powerline\ 16
+    command BigFont set guifont=Inconsolata\ for\ Powerline\ 16
+    command MidFont set guifont=Inconsolata\ for\ Powerline\ 14
+    command SmallFont set guifont=Inconsolata\ for\ Powerline\ 12
 
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
