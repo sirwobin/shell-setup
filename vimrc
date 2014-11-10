@@ -57,7 +57,7 @@ if has("gui_running")
 
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
-  elseif has("gui_mac")
+  elseif has("gui_macvim")
     set guifont=Inconsolata\ for\ Powerline:h16
 
     command BigFont set guifont=Inconsolata\ for\ Powerline:h22
