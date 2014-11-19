@@ -64,7 +64,7 @@ if has("gui_running")
     command MidFont set guifont=Inconsolata\ for\ Powerline:h18
     command SmallFont set guifont=Inconsolata\ for\ Powerline:h16
 
-    nnoremap <Leader>f :set fullscreen<Enter>
+    nnoremap <Leader>f :set fullscreen<Enter>:set guioptions+=T<Enter>:set guioptions-=T<Enter>
     nnoremap <Leader>F :set nofullscreen<Enter>
     nnoremap <D-1> :w<Enter>:bp<Enter>
     inoremap <D-1> <Esc>:w<Enter>:bp<Enter>
