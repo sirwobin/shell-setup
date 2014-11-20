@@ -35,9 +35,21 @@ git clone git@github.com:kien/ctrlp.vim.git
 git clone git@github.com:rking/ag.vim.git
 
 echo Fetching .vimrc from git
-curl -LSso ~/.vimrc https://github.com/robingl/vim-config/raw/master/vimrc
+curl -LSso ~/.vimrc https://github.com/robingl/shell-setup/raw/master/vimrc
 
 echo Fetching Inconsolata font for Powerline
 curl -LSso "Inconsolata for Powerline.otf" "https://github.com/Lokaltog/powerline-fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf?raw=true"
 
-echo Done.  Remember to install the font.
+echo Done vim setup.  Remember to install the font.
+
+echo Fetching oh my zsh.
+curl -L http://install.ohmyz.sh | sh
+
+echo Fetching .zshrc from git
+curl -LSso ~/.zshrc https://github.com/robingl/shell-setup/raw/master/zshrc
+
+echo Fetching patched powerline theme from git
+curl -LSso ~/.oh-my-zsh/themes/powerline.zsh-theme https://github.com/robingl/shell-setup/raw/master/powerline.zsh-theme
+
+echo "All done. :-)"
+
