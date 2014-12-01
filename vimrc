@@ -1,3 +1,6 @@
+let mapleader = ','
+let localleader = '\\'
+
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
@@ -15,7 +18,7 @@ set hlsearch
 set cursorline
 " originally highlight CursorLine term=underline ctermbg=238 guibg=#2d3033 guisp=#36393c
 highlight CursorLine term=underline ctermbg=238 guibg=#4C4C4C guisp=#36393c
-let mapleader = ','
+" highlight Cursor guifg=white guibg=darkblue
 command FixTrailingSpaces %s/\s\+$//
 
 nnoremap <Leader>0 :nohl<Enter>
