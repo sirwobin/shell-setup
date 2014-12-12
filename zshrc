@@ -83,10 +83,19 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias l='ls -lh'
+alias ll='ls -lAh'
 alias m='less -FnqRX'
 
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+if [ `uname` = "Linux" ]; then
+  eval $(ssh-agent)
+  echo "Remember to ssh-add to authorise use of your key in this session."
+fi
+
+if [ `uname` = "MacOS" ]; then
+  alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+  alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+fi
 
 # for rbenv from brew
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
