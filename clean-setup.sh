@@ -20,22 +20,22 @@ mkdir -p ~/.vim/bundle
 
 echo Cloning bundle git repos.
 cd ~/.vim/bundle
-git clone git@github.com:tpope/vim-pathogen.git
-git clone git@github.com:kien/rainbow_parentheses.vim.git
-git clone git://github.com/tpope/vim-classpath.git
-git clone git://github.com/tpope/vim-fireplace.git
-git clone git://github.com/tpope/vim-commentary.git
-git clone git@github.com:tpope/vim-repeat.git
-git clone git@github.com:guns/vim-sexp.git
-git clone git@github.com:tpope/vim-sexp-mappings-for-regular-people.git
-git clone git@github.com:scrooloose/nerdtree.git
-git clone git@github.com:guns/vim-clojure-static.git
-# git clone https://github.com/vim-scripts/paredit.vim
-git clone git@github.com:jordwalke/flatlandia.git
-git clone git@github.com:bling/vim-airline.git
-git clone git@github.com:tpope/vim-fugitive.git
-git clone git@github.com:kien/ctrlp.vim.git
-git clone git@github.com:rking/ag.vim.git
+git clone https://github.com/tpope/vim-pathogen
+git clone https://github.com/kien/rainbow_parentheses.vim
+git clone https://github.com/tpope/vim-classpath
+git clone https://github.com/tpope/vim-fireplace
+git clone https://github.com/tpope/vim-commentary
+git clone https://github.com/tpope/vim-repeat
+git clone https://github.com/guns/vim-sexp
+git clone https://github.com/tpope/vim-sexp-mappings-for-regular-people
+git clone https://github.com/scrooloose/nerdtree
+git clone https://github.com/guns/vim-clojure-static
+git clone https://github.com/jordwalke/flatlandia
+git clone https://github.com/bling/vim-airline
+git clone https://github.com/tpope/vim-fugitive
+git clone https://github.com/kien/ctrlp.vim
+git clone https://github.com/rking/ag.vim
+git clone https://github.com/bkad/CamelCaseMotion
 
 echo Fetching .vimrc from git
 curl -LSso ~/.vimrc https://github.com/robingl/shell-setup/raw/master/vimrc
