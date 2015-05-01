@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin:$HOME/Library/Haskell/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -86,6 +86,8 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin
 alias l='ls -lh'
 alias ll='ls -lAh'
 alias m='less -FnqRX'
+alias lr='lein repl'
+alias lf='lein figwheel'
 
 if [ `uname` = "Linux" ]; then
   eval $(ssh-agent)
@@ -95,6 +97,11 @@ fi
 if [ `uname` = "MacOS" ]; then
   alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
   alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+  alias mysql_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+  alias mysql_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+  alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+  alias pg_stop='pg_ctl -D /usr/local/var/postgres stop'
+  alias pg_log='less /usr/local/var/postgres/server.log'
 fi
 
 # for rbenv from brew
