@@ -30,7 +30,7 @@ git clone https://github.com/guns/vim-sexp
 git clone https://github.com/tpope/vim-sexp-mappings-for-regular-people
 git clone https://github.com/scrooloose/nerdtree
 git clone https://github.com/guns/vim-clojure-static
-git clone https://github.com/jordwalke/flatlandia
+git clone https://github.com/danhart/flatlandia.git
 git clone https://github.com/bling/vim-airline
 git clone https://github.com/tpope/vim-fugitive
 git clone https://github.com/kien/ctrlp.vim
