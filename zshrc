@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+setopt rmstarsilent
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -30,7 +32,7 @@ POWERLINE_FULL_CURRENT_PATH="true"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -49,13 +51,13 @@ POWERLINE_FULL_CURRENT_PATH="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting lein)
+plugins=(git zsh-syntax-highlighting lein per-directory-history autojump)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin:$HOME/Library/Haskell/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin:$HOME/Library/Haskell/bin:$GOPATH/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -86,6 +88,14 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin
 alias l='ls -lh'
 alias ll='ls -lAh'
 alias m='less -FnqRX'
+alias lstgz='dtrx -l'
+
+alias mfp='cd ~/Projects/mobiles-feeds-publisher'
+alias mfc='cd ~/Projects/mobiles-feeds-collector'
+alias mfa='cd ~/Projects/mobiles-feeds-api'
+alias mas='cd ~/Projects/mobiles-aws-scheduler'
+alias mdh='cd ~/Projects/mobiles-data-hub'
+alias mdht='cd ~/Projects/mobiles-data-hub-tasks'
 alias lr='lein repl'
 alias lf='lein figwheel'
 
@@ -106,4 +116,44 @@ fi
 
 # for rbenv from brew
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+export GITHUB_USER=sirwobin
+
+# kubernetes
+export KUBENS=mobiles
+
+source <(kubectl completion zsh)
+kbb () {
+  kubectl run -i --tty shell --rm=true --image=docker-registry-v2.uswitchinternal.com/uswitch/utils:latest --restart=Never --namespace=mobiles -- /bin/bash
+}
+ks() {
+  kubectl $@ --namespace=kube-system
+}
+kl() {
+  kubectl $@ --namespace=labs
+}
+kmob() {
+  kubectl $@ --namespace=mobiles
+}
+kt() {
+  k8stail --namespace=mobiles --labels app=$@
+}
+
+eval "$(u --completion-script-zsh)"
+
+# docker
+docker-kill-all () {
+  docker stop $(docker ps -a -q)
+  docker rm $(docker ps -a -q)
+}
+
+docker-shell () {
+  # $1 like mobiles-sales:c4d6f19fdc1c37a3dc58f5f936bdb8e0b509211d
+  docker run -it registry.usw.co/$1 /bin/bash
+}
+
+morning () {
+  u kauth
+  u sts auth
+}
 

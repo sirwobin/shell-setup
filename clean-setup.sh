@@ -36,6 +36,7 @@ git clone https://github.com/tpope/vim-fugitive
 git clone https://github.com/kien/ctrlp.vim
 git clone https://github.com/rking/ag.vim
 git clone https://github.com/bkad/CamelCaseMotion
+git clone https://github.com/fidian/hexmode.git
 
 echo Fetching .vimrc from git
 curl -LSso ~/.vimrc https://github.com/robingl/shell-setup/raw/master/vimrc
