@@ -1,0 +1,66 @@
+# This is the default .slate file.
+# If no ~/.slate file exists this is the file that will be used.
+
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Resize Bindings
+# bind right:alt       resize +10% +0
+# bind left:alt        resize -10% +0
+# bind up:alt          resize +0   -10%
+# bind down:alt        resize +0   +10%
+# bind right:ctrl;alt  resize -10% +0 bottom-right
+# bind left:ctrl;alt   resize +10% +0 bottom-right
+# bind up:ctrl;alt     resize +0   +10% bottom-right
+# bind down:ctrl;alt   resize +0   -10% bottom-right
+
+# Push Bindings
+bind right:cmd;alt  push right bar-resize:screenSizeX/2
+bind left:cmd;alt   push left  bar-resize:screenSizeX/2
+bind up:cmd;alt     move screenOriginX;screenOriginY (screenSizeX*0.8);(screenSizeY*0.85)
+# bind down:cmd;alt   move screenOriginX+(screenSizeX*0.2);(screenSizeY*0.2) (screenSizeX*0.8-1);(screenSizeY*0.85)
+bind down:cmd;alt   corner bottom-right resize:(screenSizeX*0.8);(screenSizeY*0.85)
+# bind p:cmd;alt      move screenOriginX+(screenSizeX*0.2);screenOriginY (screenSizeX*0.8-1);(screenSizeY*0.85)
+bind p:cmd;alt      corner top-right resize:(screenSizeX*0.8);(screenSizeY*0.85)
+bind m:cmd;alt      shell path:"~/Library/Mobile Documents/com~apple~ScriptEditor2/Documents" '/usr/bin/osascript MoveMouseToFocus.scpt'
+bind l:cmd;alt      shell path:"~/Library/Mobile Documents/com~apple~ScriptEditor2/Documents" '/usr/bin/osascript LockScreen.scpt'
+
+# Nudge Bindings
+# bind right:shift;alt nudge +10% +0
+# bind left:shift;alt  nudge -10% +0
+# bind up:shift;alt    nudge +0   -10%
+# bind down:shift;alt  nudge +0   +10%
+
+# Throw Bindings
+bind 1:ctrl;alt         throw 0 resize
+bind 2:ctrl;alt         throw 1 resize
+# bind 3:ctrl;alt         throw 2 resize
+# bind right:ctrl;alt;cmd throw right resize
+# bind left:ctrl;alt;cmd  throw left  resize
+# bind up:ctrl;alt;cmd    throw up    resize
+# bind down:ctrl;alt;cmd  throw down  resize
+
+# Focus Bindings
+# bind right:cmd    focus right
+# bind left:cmd     focus left
+# bind up:cmd       focus up
+# bind down:cmd     focus down
+# bind up:cmd;alt   focus behind
+# bind down:cmd;alt focus behind
+
+# Window Hints
+bind esc:cmd hint
+
+# Layouts!
+default LaptopOnly count:1
+layout LaptopOnly 'iTerm':REPEAT corner bottom-right resize:(screenSizeX*0.8);(screenSizeY*0.85) 0
+layout LaptopOnly 'Google Chrome':REPEAT throw 0 resize
+layout LaptopOnly 'MacVim':REPEAT corner top-right resize:(screenSizeX*0.8);(screenSizeY*0.85) 0
+layout LaptopOnly 'Spotify':REPEAT move screenOriginX;screenOriginY screenSizeX;screenSizeY 0
+
+default LaptopAndScreen count:2
+layout LaptopAndScreen 'iTerm':REPEAT corner bottom-right resize:(screenSizeX*0.8);(screenSizeY*0.85) 1
+layout LaptopAndScreen 'Google Chrome':REPEAT move screenOriginX;screenOriginY (screenSizeX*0.8);(screenSizeY*0.85) 1
+layout LaptopAndScreen 'MacVim':REPEAT corner top-right resize:(screenSizeX*0.8);(screenSizeY*0.85) 1
+layout LaptopAndScreen 'Spotify':REPEAT move screenOriginX;screenOriginY screenSizeX;screenSizeY 0

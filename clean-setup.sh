@@ -55,5 +55,15 @@ curl -LSso ~/.zshrc https://github.com/robingl/shell-setup/raw/master/zshrc
 echo Fetching patched powerline theme from git
 curl -LSso ~/.oh-my-zsh/themes/powerline.zsh-theme https://github.com/robingl/shell-setup/raw/master/powerline.zsh-theme
 
+echo Fetching .slate from git
+curl -LSso ~/.slate https://github.com/robingl/shell-setup/raw/master/slate
+echo Copying AppleScript utilities
+curl -LSso ~/Library/Mobile\ Documents/com\~apple\~ScriptEditor2/Documents/LockScreen.scpt https://github.com/robingl/shell-setup/raw/master/LockScreen.scpt
+curl -LSso ~/Library/Mobile\ Documents/com\~apple\~ScriptEditor2/Documents/MoveMouseToFocus.scpt https://github.com/robingl/shell-setup/raw/master/MoveMouseToFocus.scpt
+
+echo Installing cliclick
+# /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install cliclick
+
 echo "All done. :-)"
 
