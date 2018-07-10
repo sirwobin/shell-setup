@@ -75,21 +75,26 @@ if has("gui_running")
     inoremap <D-2> <Esc>:w<Enter>:bn<Enter>
     nnoremap <D-3> :w<Enter>:bd<Enter>
   endif
-
-  let g:airline_powerline_fonts = 1
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = ''
 endif
+
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor
     " add --hidden to include hidden files in ctrlp file list.
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" Tell tmux to change window names.
+if &term == "screen"
+  autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window 'vim " . expand("%:t") . "'")
 endif
 
 " Rainbow parens
@@ -102,5 +107,5 @@ au Syntax * RainbowParenthesesLoadBraces
 " Set vim-clojure-static indentation options
 let g:clojure_align_multiline_strings = 1
 
-cd ~/Projects
+cd ~/projects
 
