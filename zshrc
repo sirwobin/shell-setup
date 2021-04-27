@@ -51,13 +51,13 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting lein per-directory-history autojump)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin:$HOME/Library/Haskell/bin:$GOPATH/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -90,12 +90,6 @@ alias ll='ls -lAh'
 alias m='less -FnqRX'
 alias lstgz='dtrx -l'
 
-alias mfp='cd ~/Projects/mobiles-feeds-publisher'
-alias mfc='cd ~/Projects/mobiles-feeds-collector'
-alias mfa='cd ~/Projects/mobiles-feeds-api'
-alias mas='cd ~/Projects/mobiles-aws-scheduler'
-alias mdh='cd ~/Projects/mobiles-data-hub'
-alias mdht='cd ~/Projects/mobiles-data-hub-tasks'
 alias lr='lein repl'
 alias lf='lein figwheel'
 
@@ -107,53 +101,12 @@ fi
 if [ `uname` = "MacOS" ]; then
   alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
   alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-  alias mysql_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-  alias mysql_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-  alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-  alias pg_stop='pg_ctl -D /usr/local/var/postgres stop'
-  alias pg_log='less /usr/local/var/postgres/server.log'
+  # alias mysql_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+  # alias mysql_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+  # alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+  # alias pg_stop='pg_ctl -D /usr/local/var/postgres stop'
+  # alias pg_log='less /usr/local/var/postgres/server.log'
 fi
 
-# for rbenv from brew
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 export GITHUB_USER=sirwobin
-
-# kubernetes
-export KUBENS=mobiles
-
-source <(kubectl completion zsh)
-kbb () {
-  kubectl run -i --tty shell --rm=true --image=docker-registry-v2.uswitchinternal.com/uswitch/utils:latest --restart=Never --namespace=mobiles -- /bin/bash
-}
-ks() {
-  kubectl $@ --namespace=kube-system
-}
-kl() {
-  kubectl $@ --namespace=labs
-}
-kmob() {
-  kubectl $@ --namespace=mobiles
-}
-kt() {
-  k8stail --namespace=mobiles --labels app=$@
-}
-
-eval "$(u --completion-script-zsh)"
-
-# docker
-docker-kill-all () {
-  docker stop $(docker ps -a -q)
-  docker rm $(docker ps -a -q)
-}
-
-docker-shell () {
-  # $1 like mobiles-sales:c4d6f19fdc1c37a3dc58f5f936bdb8e0b509211d
-  docker run -it registry.usw.co/$1 /bin/bash
-}
-
-morning () {
-  u kauth
-  u sts auth
-}
 

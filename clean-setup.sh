@@ -35,8 +35,9 @@ git clone https://github.com/bling/vim-airline
 git clone https://github.com/tpope/vim-fugitive
 git clone https://github.com/kien/ctrlp.vim
 git clone https://github.com/rking/ag.vim
-git clone https://github.com/bkad/CamelCaseMotion
-git clone https://github.com/fidian/hexmode.git
+git clone https://github.com/bhurlow/vim-parinfer.git
+# git clone https://github.com/bkad/CamelCaseMotion
+# git clone https://github.com/fidian/hexmode.git
 
 echo Fetching .vimrc from git
 curl -LSso ~/.vimrc https://github.com/robingl/shell-setup/raw/master/vimrc
@@ -55,15 +56,15 @@ curl -LSso ~/.zshrc https://github.com/robingl/shell-setup/raw/master/zshrc
 echo Fetching patched powerline theme from git
 curl -LSso ~/.oh-my-zsh/themes/powerline.zsh-theme https://github.com/robingl/shell-setup/raw/master/powerline.zsh-theme
 
-echo Fetching .slate from git
-curl -LSso ~/.slate https://github.com/robingl/shell-setup/raw/master/slate
-echo Copying AppleScript utilities
-curl -LSso ~/Library/Mobile\ Documents/com\~apple\~ScriptEditor2/Documents/LockScreen.scpt https://github.com/robingl/shell-setup/raw/master/LockScreen.scpt
-curl -LSso ~/Library/Mobile\ Documents/com\~apple\~ScriptEditor2/Documents/MoveMouseToFocus.scpt https://github.com/robingl/shell-setup/raw/master/MoveMouseToFocus.scpt
+# echo Fetching .slate from git
+# curl -LSso ~/.slate https://github.com/robingl/shell-setup/raw/master/slate
+# echo Copying AppleScript utilities
+# curl -LSso ~/Library/Mobile\ Documents/com\~apple\~ScriptEditor2/Documents/LockScreen.scpt https://github.com/robingl/shell-setup/raw/master/LockScreen.scpt
+# curl -LSso ~/Library/Mobile\ Documents/com\~apple\~ScriptEditor2/Documents/MoveMouseToFocus.scpt https://github.com/robingl/shell-setup/raw/master/MoveMouseToFocus.scpt
 
-echo Installing cliclick
+# echo Installing cliclick
 # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install cliclick
+# brew install cliclick
 
 echo "All done. :-)"
 
