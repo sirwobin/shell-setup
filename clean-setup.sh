@@ -39,19 +39,18 @@ git clone https://github.com/bhurlow/vim-parinfer.git
 # git clone https://github.com/bkad/CamelCaseMotion
 # git clone https://github.com/fidian/hexmode.git
 
-echo Fetching .vimrc from git
-curl -LSso ~/.vimrc https://github.com/robingl/shell-setup/raw/master/vimrc
+echo Fetching ohmyzsh.
+curl -L http://install.ohmyz.sh | sh
+
+for remote_file in vimrc zshrc tmux.conf zlogout; do
+  echo Fetching $remote_file from git
+  curl -LSso ~/.$remote_file https://github.com/sirwobin/shell-setup/raw/master/$remote_file
+done
 
 echo Fetching Inconsolata font for Powerline
 curl -LSso "Inconsolata for Powerline.otf" "https://github.com/Lokaltog/powerline-fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf?raw=true"
 
 echo Done vim setup.  Remember to install the font.
-
-echo Fetching oh my zsh.
-curl -L http://install.ohmyz.sh | sh
-
-echo Fetching .zshrc from git
-curl -LSso ~/.zshrc https://github.com/robingl/shell-setup/raw/master/zshrc
 
 echo Fetching patched powerline theme from git
 curl -LSso ~/.oh-my-zsh/themes/powerline.zsh-theme https://github.com/robingl/shell-setup/raw/master/powerline.zsh-theme

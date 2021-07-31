@@ -9,7 +9,9 @@ setopt rmstarsilent
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="nanotech"
 ZSH_THEME="powerline"
-POWERLINE_HIDE_HOST_NAME="true"
+if [[ -z "$SSH_CLIENT" ]] ; then
+  POWERLINE_HIDE_HOST_NAME="true"
+fi
 POWERLINE_SHOW_GIT_ON_RIGHT="true"
 POWERLINE_FULL_CURRENT_PATH="true"
 
@@ -51,13 +53,13 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git lein zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -90,23 +92,25 @@ alias ll='ls -lAh'
 alias m='less -FnqRX'
 alias lstgz='dtrx -l'
 
+alias st='cd ~/projects/stock-truthy'
 alias lr='lein repl'
 alias lf='lein figwheel'
+alias pi='ssh 192.168.2.10 -t "tmux attach"'
 
-if [ `uname` = "Linux" ]; then
+if [[ `uname` = "Linux" && -z "$SSH_CLIENT" ]]; then
   eval $(ssh-agent)
-  echo "Remember to ssh-add to authorise use of your key in this session."
+  ssh-add
 fi
 
-if [ `uname` = "MacOS" ]; then
-  alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-  alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-  # alias mysql_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-  # alias mysql_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-  # alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-  # alias pg_stop='pg_ctl -D /usr/local/var/postgres stop'
-  # alias pg_log='less /usr/local/var/postgres/server.log'
-fi
+# if [ `uname` = "MacOS" ]; then
+#   alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+#   alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+#   alias mysql_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+#   alias mysql_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+#   alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+#   alias pg_stop='pg_ctl -D /usr/local/var/postgres stop'
+#   alias pg_log='less /usr/local/var/postgres/server.log'
+# fi
 
 export GITHUB_USER=sirwobin
 
