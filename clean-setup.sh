@@ -42,6 +42,9 @@ git clone https://github.com/bhurlow/vim-parinfer.git
 echo Fetching ohmyzsh.
 curl -L http://install.ohmyz.sh | sh
 
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 for remote_file in vimrc zshrc tmux.conf zlogout; do
   echo Fetching $remote_file from git
   curl -LSso ~/.$remote_file https://github.com/sirwobin/shell-setup/raw/master/$remote_file
