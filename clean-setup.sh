@@ -68,5 +68,11 @@ curl -LSso ~/.oh-my-zsh/themes/powerline.zsh-theme https://github.com/robingl/sh
 # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # brew install cliclick
 
+read -e -p "What email address should git use?: " tmp
+git config --global user.email "$tmp"
+git config --global user.name "sirwobin"
+git config --global init.defaultBranch main
+git config --global pull.rebase false
+
 echo "All done. :-)"
 
