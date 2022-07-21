@@ -16,11 +16,11 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'romgrk/barbar.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 
-Plug 'romgrk/barbar.nvim'
-
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 if has('win32')

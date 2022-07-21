@@ -7,6 +7,8 @@ require("nvim-tree").setup({
         -- :help nvim-tree-mappings
         { key = "u", action = "dir_up" },
         { key = "C", action = "cd" },
+        { key = "-", action = "split" },
+        { key = "|", action = "vsplit" },
       },
     },
   },
