@@ -4,13 +4,13 @@ let localleader = '\\'
 call plug#begin(stdpath('data') . '/plugged')
 
 " Conjure
-Plug 'Olical/conjure', {'tag': 'v4.3.1'}
+Plug 'luochen1990/rainbow'
+Plug 'Olical/conjure', {'tag': 'v4.37.0'}
 
 " Conjure support - jack-in with nrepl dependencies
 Plug 'tpope/vim-dispatch'
-Plug 'clojure-vim/vim-jack-in'
-" Only in Neovim:
 Plug 'radenling/vim-dispatch-neovim'
+Plug 'clojure-vim/vim-jack-in'
 
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
@@ -21,6 +21,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 if has('win32')
