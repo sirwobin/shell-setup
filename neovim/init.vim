@@ -3,15 +3,16 @@ let localleader = '\\'
 
 call plug#begin(stdpath('data') . '/plugged')
 
-" Conjure
-Plug 'luochen1990/rainbow'
-Plug 'Olical/conjure', {'tag': 'v4.37.0'}
+Plug 'Everblush/everblush.vim'
+Plug 'tpope/vim-fugitive'
 
+" Conjure
+Plug 'Olical/conjure', {'tag': 'v4.37.0'}
 " Conjure support - jack-in with nrepl dependencies
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'clojure-vim/vim-jack-in'
-
+Plug 'luochen1990/rainbow'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
@@ -19,9 +20,10 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-
-Plug 'vimwiki/vimwiki'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 if has('win32')
@@ -35,7 +37,8 @@ for f in split(glob(stdpath('config').'/*'), "\n")
     execute 'source' f
   endif
 endfor
-" colorscheme flatlandia
+
+colorscheme everblush
 
 syntax on
 filetype plugin indent on
@@ -51,7 +54,7 @@ set visualbell
 set mouse+=a
 
 " originally highlight CursorLine term=underline ctermbg=238 guibg=#2d3033 guisp=#36393c
-highlight CursorLine term=underline ctermbg=238 guibg=#4C4C4C guisp=#36393c
+"highlight CursorLine term=underline ctermbg=238 guibg=#4C4C4C guisp=#36393c
 " highlight Cursor guifg=white guibg=darkblue
 command FixTrailingSpaces %s/\s\+$//
 
@@ -61,6 +64,8 @@ nnoremap <silent> <Leader>s :w<Enter>
 nnoremap <silent> <Leader>t :NvimTreeToggle<Enter>
 nnoremap <silent> <Leader>y "*y
 nnoremap <silent> <Leader>p "*p
+nnoremap <silent> <Leader>o :FZF<Enter>
+inoremap <silent> <C-p> <plug>(fzf-complete-path)
 imap jj <Esc>
 
 " Ctrl-Space now omnicompletes as well
