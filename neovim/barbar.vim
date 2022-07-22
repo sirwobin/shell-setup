@@ -43,8 +43,8 @@ let bufferline.closable = v:true
 let bufferline.clickable = v:true
 
 " Excludes buffers from the tabline
-let bufferline.exclude_ft = ['javascript']
-let bufferline.exclude_name = ['package.json']
+"let bufferline.exclude_ft = ['javascript']
+"let bufferline.exclude_name = ['package.json']
 
 " Enable/disable icons
 " if set to 'buffer_number', will show buffer number in the tabline
@@ -92,3 +92,15 @@ let bufferline.letters =
 " where X is the buffer number. But only a static string is accepted here.
 let bufferline.no_name_title = v:null
 
+lua << EOF
+-- Don't use a foolish fg colour for modified buffer tab text.
+local hl = require'bufferline.utils'.hl
+local fg_current  = hl.fg_or_default({'Normal'}, '#efefef', 255)
+local bg_current  = hl.bg_or_default({'Normal'}, 'none')
+local bg_visible  = hl.bg_or_default({'TabLineSel', 'Normal'}, 'none')
+local bg_inactive = hl.bg_or_default({'TabLineFill', 'StatusLine'}, 'none')
+
+hl.set_default('BufferCurrentMod',     bg_current, fg_current)
+hl.set_default('BufferInactiveMod',    bg_inactive, fg_current)
+hl.set_default('BufferVisibleMod',     bg_visible, fg_current)
+EOF
