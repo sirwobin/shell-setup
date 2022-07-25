@@ -15,6 +15,7 @@ Plug 'clojure-vim/vim-jack-in'
 Plug 'luochen1990/rainbow'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'gpanders/nvim-parinfer'
 
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'romgrk/barbar.nvim'
