@@ -58,6 +58,7 @@ set mouse+=a
 "highlight CursorLine term=underline ctermbg=238 guibg=#4C4C4C guisp=#36393c
 " highlight Cursor guifg=white guibg=darkblue
 command FixTrailingSpaces %s/\s\+$//
+command JsonFormat :%!python3 -m json.tool<Enter>
 
 nnoremap <silent> <Leader>0 :nohl<Enter>
 nnoremap <silent> <Leader>a /<C-R><C-W><Enter>
