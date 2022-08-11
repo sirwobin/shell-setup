@@ -78,6 +78,11 @@
     userName = "robin";
     userEmail = "robin108@gmail.com";
     # ignores = [ "" ];
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
 
   };
 
