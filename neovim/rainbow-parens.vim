@@ -2,8 +2,8 @@
 let g:rainbow_active = 1
 
 let g:rainbow_conf = {
-\       'guifgs': ['darkred','darkcyan','darkgreen','red','darkblue','darkmagenta','gray','brown'],
-\       'ctermfgs': ['darkred','darkcyan','darkgreen','red','darkblue','darkmagenta','gray','brown'],
+\       'guifgs': ['darkred','darkcyan','darkgreen','red','yellow','darkmagenta','gray','brown'],
+\       'ctermfgs': ['darkred','darkcyan','darkgreen','red','yellow','darkmagenta','gray','brown'],
 \	'guis': [''],
 \	'cterms': [''],
 \	'operators': '_,_',
@@ -14,7 +14,7 @@ let g:rainbow_conf = {
 \			'parentheses_options': 'containedin=markdownCode contained',
 \		},
 \		'clojure': {
-\			'guifgs': ['darkred','darkcyan','darkgreen','red','darkblue','darkmagenta','gray','brown'],
+\			'guifgs': ['darkred','darkcyan','darkgreen','red','yellow','darkmagenta','gray','brown'],
 \               },
 \		'haskell': {
 \			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'],
