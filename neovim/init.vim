@@ -60,6 +60,7 @@ set mouse+=a
 " highlight Cursor guifg=white guibg=darkblue
 command FixTrailingSpaces %s/\s\+$//
 command JsonFormat :%!python3 -m json.tool<Enter>
+command LamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :lambda)"
 
 nnoremap <silent> <Leader>0 :nohl<Enter>
 nnoremap <silent> <Leader>a /<C-R><C-W><Enter>
