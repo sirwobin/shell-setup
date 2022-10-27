@@ -61,14 +61,15 @@ set mouse+=a
 command FixTrailingSpaces %s/\s\+$//
 command JsonFormat :%!python3 -m json.tool<Enter>
 command LamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :lambda)"
+command GP Git push
 
 nnoremap <silent> <Leader>0 :nohl<Enter>
 nnoremap <silent> <Leader>a /<C-R><C-W><Enter>
 nnoremap <silent> <Leader>s :w<Enter>
 nnoremap <silent> <Leader>t :NvimTreeToggle<Enter>
-nnoremap <silent> <Leader>y "*y
-nnoremap <silent> <Leader>p "*p
-nnoremap <silent> <Leader>o :FZF<Enter>
+nnoremap <silent> <Leader>y "+y
+nnoremap <silent> <Leader>p "+p
+nnoremap <silent> <Leader>o :GFiles<Enter>
 inoremap <silent> <C-p> <plug>(fzf-complete-path)
 imap jj <Esc>
 
