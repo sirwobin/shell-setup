@@ -68,10 +68,11 @@ let bufferline.icon_pinned = 'ᛍ'
 " If true, new buffers will be inserted at the start/end of the list.
 " Default is to insert after current buffer.
 let bufferline.insert_at_start = v:false
-let bufferline.insert_at_end = v:false
+let bufferline.insert_at_end = v:true
 
 " Sets the maximum padding width with which to surround each tab.
 let bufferline.maximum_padding = 4
+
 
 " Sets the maximum buffer name length.
 let bufferline.maximum_length = 30
@@ -90,17 +91,10 @@ let bufferline.letters =
 
 " Sets the name of unnamed buffers. By default format is "[Buffer X]"
 " where X is the buffer number. But only a static string is accepted here.
-let bufferline.no_name_title = v:null
+" let bufferline.no_name_title = v:null
 
-lua << EOF
--- Don't use a foolish fg colour for modified buffer tab text.
-local hl = require'bufferline.utils'.hl
-local fg_current  = hl.fg_or_default({'Normal'}, '#efefef', 255)
-local bg_current  = hl.bg_or_default({'Normal'}, 'none')
-local bg_visible  = hl.bg_or_default({'TabLineSel', 'Normal'}, 'none')
-local bg_inactive = hl.bg_or_default({'TabLineFill', 'StatusLine'}, 'none')
+" Don't use a foolish fg colour for modified buffer tab text.
+highlight BufferCurrentMod guifg=#e57474
+highlight BufferInactiveMod guifg=#870000
+highlight BufferVisibleMod guifg=#870000
 
-hl.set_default('BufferCurrentMod',     bg_current, fg_current)
-hl.set_default('BufferInactiveMod',    bg_inactive, fg_current)
-hl.set_default('BufferVisibleMod',     bg_visible, fg_current)
-EOF

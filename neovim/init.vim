@@ -33,14 +33,16 @@ if has('win32')
   source $VIMRUNTIME/mswin.vim
 endif
 
+colorscheme everblush
+set termguicolors
+set t_Co=256
+
 " Load all other vim files in the config directory that are not init.vim or ginit.vim
 for f in split(glob(stdpath('config').'/*'), "\n")
   if f !~ '[\\\/]g\=init.vim$' && f =~ '\(lua\|vim\)$'
     execute 'source' f
   endif
 endfor
-
-colorscheme everblush
 
 syntax on
 filetype plugin indent on
