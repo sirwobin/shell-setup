@@ -2,7 +2,7 @@
 let g:rainbow_active = 1
 
 let g:rainbow_conf = {
-\       'guifgs': ['darkred','darkcyan','darkgreen','red','yellow','darkmagenta','gray','brown'],
+\       'guifgs': ['red','steelblue1','seagreen2','yellow','magenta1','lightgreen','darkorange','darkslategray1'],
 \       'ctermfgs': ['darkred','darkcyan','darkgreen','red','yellow','darkmagenta','gray','brown'],
 \	'guis': [''],
 \	'cterms': [''],
@@ -14,7 +14,7 @@ let g:rainbow_conf = {
 \			'parentheses_options': 'containedin=markdownCode contained',
 \		},
 \		'clojure': {
-\			'guifgs': ['darkred','darkcyan','darkgreen','red','yellow','darkmagenta','gray','brown'],
+\			'guifgs': ['red','steelblue1','seagreen2','yellow','magenta1','lightgreen','darkorange','darkslategray1'],
 \               },
 \		'haskell': {
 \			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'],

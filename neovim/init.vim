@@ -1,6 +1,9 @@
 let mapleader = ','
 let localleader = '\\'
 
+set termguicolors
+set t_Co=256
+
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'Everblush/everblush.vim'
@@ -34,8 +37,6 @@ if has('win32')
 endif
 
 colorscheme everblush
-set termguicolors
-set t_Co=256
 
 " Load all other vim files in the config directory that are not init.vim or ginit.vim
 for f in split(glob(stdpath('config').'/*'), "\n")
