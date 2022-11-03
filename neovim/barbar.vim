@@ -95,6 +95,6 @@ let bufferline.letters =
 
 " Don't use a foolish fg colour for modified buffer tab text.
 highlight BufferCurrentMod guifg=#e57474
-highlight BufferInactiveMod guifg=#870000
-highlight BufferVisibleMod guifg=#870000
+highlight BufferInactiveMod guifg=#870000 guibg=#3b4244
+highlight BufferVisibleMod guifg=#870000 guibg=#3b4244
 
