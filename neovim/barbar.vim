@@ -52,7 +52,7 @@ let bufferline.clickable = v:true
 " if set to 'both', will show buffer index and icons in the tabline
 " if set to 'buffer_number_with_icon', will show buffer number and icons in the tabline
 " v:true is simple display
-let bufferline.icons = 'buffer_number_with_icon'
+let bufferline.icons = v:true
 
 " Sets the icon's highlight group.
 " If false, will use nvim-web-devicons colors
