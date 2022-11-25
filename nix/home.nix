@@ -46,7 +46,7 @@
       pi = "ssh 192.168.2.10 -t \"tmux attach\"";
       lr = "lein repl";
       lf = "lein figwheel";
-      ea = "cd ~/projects/external-api; nix-shell";
+      tan = "cd ~/projects/tantalus-cljs; nix-shell";
     };
 
     loginExtra =
