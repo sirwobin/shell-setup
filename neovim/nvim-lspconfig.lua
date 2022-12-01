@@ -24,3 +24,6 @@ require'lspconfig'.clojure_lsp.setup {
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
   on_attach = on_attach_fn,
 }
+
+require'lspconfig'.eslint.setup{}
+
