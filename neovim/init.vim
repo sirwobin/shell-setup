@@ -17,7 +17,6 @@ Plug 'clojure-vim/vim-jack-in'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'gpanders/nvim-parinfer'
-Plug 'mfussenegger/nvim-lint'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'saadparwaiz1/cmp_luasnip'
