@@ -11,15 +11,22 @@ Plug 'tpope/vim-fugitive'
 
 " Conjure
 Plug 'Olical/conjure', {'tag': 'v4.37.0'}
-" Conjure support - jack-in with nrepl dependencies
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'clojure-vim/vim-jack-in'
-Plug 'luochen1990/rainbow'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'gpanders/nvim-parinfer'
 Plug 'mfussenegger/nvim-lint'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'PaterJason/cmp-conjure'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'p00f/nvim-ts-rainbow'
 
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'romgrk/barbar.nvim'
@@ -45,6 +52,8 @@ for f in split(glob(stdpath('config').'/*'), "\n")
   endif
 endfor
 
+" let g:conjure#mapping#dc_word = 'gk'
+
 syntax on
 filetype plugin indent on
 set number
@@ -57,13 +66,14 @@ set hlsearch
 set cursorline
 set visualbell
 set mouse+=a
+set completeopt=menu,menuone,noselect
 
 " originally highlight CursorLine term=underline ctermbg=238 guibg=#2d3033 guisp=#36393c
 "highlight CursorLine term=underline ctermbg=238 guibg=#4C4C4C guisp=#36393c
 " highlight Cursor guifg=white guibg=darkblue
 command FixTrailingSpaces %s/\s\+$//
 command JsonFormat :%!python3 -m json.tool<Enter>
-command LamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :lambda)"
+command EALamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :external-api-lambda)"
 command GP Git push
 
 nnoremap <silent> <Leader>0 :nohl<Enter>
@@ -75,7 +85,4 @@ nnoremap <silent> <Leader>p "+p
 nnoremap <silent> <Leader>o :GFiles<Enter>
 inoremap <silent> <C-p> <plug>(fzf-complete-path)
 imap jj <Esc>
-
-" Ctrl-Space now omnicompletes as well
-noremap <C-Space> <C-x><C-o>
 
