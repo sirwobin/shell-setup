@@ -73,6 +73,7 @@ set completeopt=menu,menuone,noselect
 command FixTrailingSpaces %s/\s\+$//
 command JsonFormat :%!python3 -m json.tool<Enter>
 command EALamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :external-api-lambda)"
+command CTMLamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :customer-token-manager-lambda)"
 command GP Git push
 
 nnoremap <silent> <Leader>0 :nohl<Enter>
