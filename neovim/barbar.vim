@@ -93,8 +93,10 @@ let bufferline.letters =
 " where X is the buffer number. But only a static string is accepted here.
 " let bufferline.no_name_title = v:null
 
-" Don't use a foolish fg colour for modified buffer tab text.
-highlight BufferCurrentMod guifg=#e57474
-highlight BufferInactiveMod guifg=#e57474 guibg=#3b4244
+" Sensible fg colours for buffer tab text.
+highlight BufferCurrent guifg=#ffffff
+highlight BufferCurrentMod guifg=#ff0000
+" highlight BufferInactiveMod guifg=#e57474 guibg=#3b4244
+highlight BufferInactiveMod guifg=#af0000
 highlight BufferVisibleMod guifg=#e57474 guibg=#3b4244
 

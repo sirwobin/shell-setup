@@ -6,7 +6,9 @@ set t_Co=256
 
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'hzchirs/vim-material'
 Plug 'Everblush/everblush.vim'
+Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 
 " Conjure
@@ -42,7 +44,15 @@ if has('win32')
   source $VIMRUNTIME/mswin.vim
 endif
 
-colorscheme everblush
+" colorscheme everblush
+let g:material_style='oceanic'
+set background=dark
+colorscheme vim-material
+
+let g:indentLine_char = ''
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 1
 
 " Load all other vim files in the config directory that are not init.vim or ginit.vim
 for f in split(glob(stdpath('config').'/*'), "\n")
@@ -72,6 +82,7 @@ set completeopt=menu,menuone,noselect
 " highlight Cursor guifg=white guibg=darkblue
 command FixTrailingSpaces %s/\s\+$//
 command JsonFormat :%!python3 -m json.tool<Enter>
+command NameTreeSitterTextObject execute "lua print(vim.treesitter.get_node_at_cursor())"
 command EALamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :external-api-lambda)"
 command CTMLamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :customer-token-manager-lambda)"
 command GP Git push
