@@ -8,7 +8,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'hzchirs/vim-material'
 Plug 'Everblush/everblush.vim'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 
 " Conjure
@@ -49,10 +49,10 @@ let g:material_style='oceanic'
 set background=dark
 colorscheme vim-material
 
-let g:indentLine_char = ''
-let g:indentLine_first_char = ''
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 1
+" let g:indentLine_char = ''
+" let g:indentLine_first_char = ''
+" let g:indentLine_showFirstIndentLevel = 1
+" let g:indentLine_setColors = 1
 
 " Load all other vim files in the config directory that are not init.vim or ginit.vim
 for f in split(glob(stdpath('config').'/*'), "\n")
