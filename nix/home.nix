@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.username = "nixos";
-  home.homeDirectory = "/home/nixos";
+  home.username = "robin";
+  home.homeDirectory = "/home/robin";
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
@@ -85,6 +85,15 @@
       };
     };
 
+  };
+
+  programs.urxvt = {
+    enable = true;
+    fonts = [ "xft:FantasqueSansMono NF:size=12" ];
+    keybindings = { 
+      "Shift-Control-C" = "eval:selection_to_clipboard";
+      "Shift-Control-V" = "eval:paste_clipboard";
+    };
   };
 
   programs.tmux = {
