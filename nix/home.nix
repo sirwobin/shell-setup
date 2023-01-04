@@ -46,6 +46,7 @@
       pi = "ssh 192.168.2.10 -t \"tmux attach\"";
       lr = "lein repl";
       lf = "lein figwheel";
+      nsp = "nix-shell -p";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
     };
 
