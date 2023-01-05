@@ -37,7 +37,6 @@
 
   # Use LightDM for login and no desktop manager
   services.xserver.displayManager.defaultSession = "none+i3";
-  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.windowManager.i3.enable = true;
 
   # Define a user account.
@@ -46,20 +45,45 @@
     description = "Robin L";
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      firefox
-      chromium
-      bitwarden
-      bitwarden-cli
-      kitty
-      xsane
-    ];
+#    packages = with pkgs; [
+#      firefox
+#      chromium
+#      bitwarden
+#      bitwarden-cli
+#      kitty
+#      xsane
+#    ];
   };
 
   # Enable automatic login.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "robin";
 
+  environment.systemPackages = with pkgs; [
+    dunst
+    wireguard-tools
+    pkgs.networkmanagerapplet
+  ];
+
+#  environment.etc = {
+#    "wireguard/ivpn_nl3.conf" = {
+#      text = ''
+#      [Interface]
+#      Address = 172.30.245.78/32
+#      DNS = 172.16.0.1
+#      PrivateKey = <substitute from file>
+#      ListenPort = 2049
+#      [Peer]
+#      PublicKey = XDU6Syq1DY82IMatsHV0x/TAtbLiRwh/SdFCXlEn40c=
+#      Endpoint = nl3.wg.ivpn.net:2049
+#      AllowedIPs = 0.0.0.0/0
+#      '';
+#      mode = "0400";
+#    };
+#  };
+
   # Allow Canon scanner to be detected.
   networking.firewall.allowedTCPPorts = [ 8612 ];
+  # Wireguard port.
+  networking.firewall.allowedUDPPorts = [ 2049 ];
 }

@@ -6,7 +6,7 @@
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
-  home.packages = [ pkgs.fzf pkgs.tmux pkgs.htop-vim pkgs.powerline-go ];
+  home.packages = with pkgs; [ gnucash bitwarden bitwarden-cli kitty xsane firefox chromium fzf tmux htop-vim powerline-go ];
   # pkgs.git
 
   programs.zsh = {
@@ -86,15 +86,6 @@
       };
     };
 
-  };
-
-  programs.urxvt = {
-    enable = true;
-    fonts = [ "xft:FantasqueSansMono NF:size=12" ];
-    keybindings = { 
-      "Shift-Control-C" = "eval:selection_to_clipboard";
-      "Shift-Control-V" = "eval:paste_clipboard";
-    };
   };
 
   programs.tmux = {
