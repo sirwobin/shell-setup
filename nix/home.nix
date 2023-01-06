@@ -6,13 +6,14 @@
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ gnucash bitwarden bitwarden-cli kitty xsane firefox chromium fzf tmux htop-vim powerline-go ];
+  home.packages = with pkgs; [ gnucash bitwarden bitwarden-cli kitty xsane firefox chromium fzf tmux htop-vim powerline-go zsh-autosuggestions ];
   # pkgs.git
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
+    enableAutosuggestions = true;
     history.share = false;
 
     plugins = [
@@ -30,7 +31,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "lein" ];
+      plugins = [ "git" "lein" "aws" "copypath" "copyfile" "copybuffer" "dirhistory" "fzf" ];
     };
 
 
@@ -47,6 +48,7 @@
       lr = "lein repl";
       lf = "lein figwheel";
       nsp = "nix-shell -p";
+      hms = "nix-shell -p neovim home-manager; cd ~/projects/shell-setup/nix";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
     };
 
