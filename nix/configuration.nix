@@ -54,7 +54,8 @@
   environment.systemPackages = with pkgs; [
     dunst
     wireguard-tools
-    pkgs.networkmanagerapplet
+    networkmanagerapplet
+    blueman
   ];
 
 #  environment.etc = {
