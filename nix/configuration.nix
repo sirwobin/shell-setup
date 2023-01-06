@@ -45,14 +45,6 @@
     description = "Robin L";
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
     shell = pkgs.zsh;
-#    packages = with pkgs; [
-#      firefox
-#      chromium
-#      bitwarden
-#      bitwarden-cli
-#      kitty
-#      xsane
-#    ];
   };
 
   # Enable automatic login.
