@@ -6,8 +6,14 @@
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ gnucash bitwarden bitwarden-cli kitty xsane firefox chromium fzf tmux htop-vim powerline-go zsh-autosuggestions ];
+  home.packages = with pkgs; [ autorandr gnucash bitwarden bitwarden-cli kitty xsane firefox chromium fzf tmux htop-vim powerline-go zsh-autosuggestions ];
   # pkgs.git
+
+  # services.autorandr.enable = true;
+
+  xresources.properties = {
+    "Xft.dpi" = 120;
+  };
 
   programs.zsh = {
     enable = true;
@@ -48,8 +54,10 @@
       lr = "lein repl";
       lf = "lein figwheel";
       nsp = "nix-shell -p";
-      hms = "nix-shell -p neovim home-manager; cd ~/projects/shell-setup/nix";
+      hms = "nix-shell -p neovim home-manager --command 'cd ~/projects/shell-setup/nix; nvim home.nix; return'";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
+      monitor_on = "xrandr --output eDP-1 --primary --mode 3200x1800 --pos 320x2160 --rotate normal --output DP-1 --off --output HDMI-1 --off --output HDMI-2 --mode 3840x2160 --pos 0x0 --rotate normal";
+      monitor_off = "xrandr --output eDP-1 --primary --mode 3200x1800 --output DP-1 --off --output HDMI-1 --off --output HDMI-2 --off";
     };
 
     loginExtra =
