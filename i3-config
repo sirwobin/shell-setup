@@ -14,7 +14,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 8
-font pango:DejaVu Sans Mono 18
+font pango:FiraCode Nerd Font Mono 18
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -34,6 +34,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+
+# faster touchpad movement
+exec --no-startup-id xinput --set-prop 'FocalTechPS/2 FocalTech Touchpad' 326 1
+exec --no-startup-id xinput --set-prop 'PixArt HP USB Optical Mouse' 326 1
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -156,7 +160,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 #bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -185,7 +189,7 @@ mode "resize" {
 
 bindsym $mod+Shift+r mode "resize"
 
-bindsym $mod+r exec dmenu_run -fn "DejaVu Sans Mono-18"
+bindsym $mod+r exec dmenu_run -fn "FiraCode Nerd Font Mono-18"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
