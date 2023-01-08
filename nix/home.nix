@@ -56,8 +56,7 @@
       nsp = "nix-shell -p";
       hms = "nix-shell -p neovim home-manager --command 'cd ~/projects/shell-setup/nix; nvim home.nix; return'";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
-      monitor_on = "xrandr --output eDP-1 --primary --mode 3200x1800 --pos 320x2160 --rotate normal --output DP-1 --off --output HDMI-1 --off --output HDMI-2 --mode 3840x2160 --pos 0x0 --rotate normal";
-      monitor_off = "xrandr --output eDP-1 --primary --mode 3200x1800 --output DP-1 --off --output HDMI-1 --off --output HDMI-2 --off";
+      monitor = "~/projects/shell-setup/bin/monitor.sh";
     };
 
     loginExtra =
