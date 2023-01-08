@@ -24,6 +24,9 @@ font pango:FiraCode Nerd Font Mono 18
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# Figure out screen placements
+exec --no-startup-id ~/projects/shell-setup/bin/monitor.sh auto
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
