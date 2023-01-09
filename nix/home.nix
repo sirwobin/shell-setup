@@ -6,7 +6,10 @@
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ neovim gnucash bitwarden bitwarden-cli kitty xsane firefox chromium fzf tmux htop-vim powerline-go zsh-autosuggestions ];
+  home.packages = with pkgs; [ neovim fzf htop-vim powerline-go zsh-autosuggestions kitty xss-lock
+                               firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
+                               libreoffice
+  ];
 
   xresources.properties = {
     "Xft.dpi" = 120;
