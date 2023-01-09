@@ -9,6 +9,9 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+
+  services.fwupd.enable = true;
+  services.udisks2.enable = true;
   programs.zsh.enable = true;
   # users.extraUsers.nixos.shell = pkgs.zsh;
   # or
