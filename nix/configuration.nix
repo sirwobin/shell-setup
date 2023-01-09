@@ -19,8 +19,8 @@
   time.timeZone = "Europe/Amsterdam";
 
   # Possibly also VirtualBox guest additions: https://nixos.wiki/wiki/VirtualBox
-  virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.x11 = true;
+  # virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.guest.x11 = true;
 
   # Enable scanner support,
   hardware.sane.enable = true;
