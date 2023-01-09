@@ -38,6 +38,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# bluetooth applet
+exec --no-startup-id blueman-applet
+
 # faster touchpad movement
 exec --no-startup-id xinput --set-prop 'FocalTechPS/2 FocalTech Touchpad' 326 1
 exec --no-startup-id xinput --set-prop 'PixArt HP USB Optical Mouse' 326 1
