@@ -6,8 +6,9 @@
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ neovim fzf htop-vim powerline-go zsh-autosuggestions dtrx tree which kitty xss-lock
-                               firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5 libreoffice
+  home.packages = with pkgs; [ neovim fzf htop-vim powerline-go zsh-autosuggestions dtrx tree which pulseaudioFull
+                               kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
+                               libreoffice
   ];
 
   xresources.properties = {
