@@ -14,6 +14,7 @@
   services.udisks2.enable = true;
   services.blueman.enable = true;
   services.onedrive.enable = true;
+  programs.steam.enable = true;
 
   programs.zsh.enable = true;
   # users.extraUsers.nixos.shell = pkgs.zsh;
@@ -28,6 +29,9 @@
   # virtualisation.virtualbox.guest.enable = true;
   # virtualisation.virtualbox.guest.x11 = true;
 
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
   # Enable scanner support,
   hardware.sane.enable = true;
   hardware.sane.extraBackends = [ pkgs.sane-airscan ];
@@ -41,6 +45,14 @@
     # bjnp://192.168.2.24
   # '';
 
+  fonts.fonts = with pkgs; [
+    fantasque-sans-mono
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
+
   # Use LightDM for login and no desktop manager
   services.xserver.displayManager.defaultSession = "none+i3";
   services.xserver.windowManager.i3.enable = true;
@@ -49,13 +61,16 @@
   users.users.robin = {
     isNormalUser = true;
     description = "Robin L";
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "scanner" "lp" ];
     shell = pkgs.zsh;
   };
 
   # Enable automatic login.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "robin";
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     dunst
