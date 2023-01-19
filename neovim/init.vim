@@ -12,7 +12,7 @@ Plug 'Everblush/everblush.vim'
 Plug 'tpope/vim-fugitive'
 
 " Conjure
-Plug 'Olical/conjure', {'tag': 'v4.37.0'}
+Plug 'Olical/conjure', {'tag': 'v4.42.0'}
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'clojure-vim/vim-jack-in'
