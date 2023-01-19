@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [ neovim fzf htop-vim powerline-go zsh-autosuggestions dtrx tree which pulseaudioFull
                                kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
-                               libreoffice brightnessctl encfs vlc
+                               libreoffice brightnessctl encfs vlc mplayer ranger xclip
   ];
 
   xresources.properties = {
@@ -40,9 +40,19 @@
       plugins = [ "git" "lein" "aws" "copypath" "copyfile" "copybuffer" "dirhistory" "fzf" ];
     };
 
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
 
     localVariables = {
       COMPLETION_WAITING_DOTS = "true";
+    };
+
+    dirHashes = {
+      docs  = "$HOME/Documents";
+      vids  = "$HOME/Videos";
+      dl    = "$HOME/Downloads";
+      proj  = "$HOME/projects";
     };
 
     shellAliases = {
@@ -57,6 +67,12 @@
       hms = "nix-shell -p neovim home-manager --command 'cd ~/projects/shell-setup/nix; nvim home.nix; return'";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
       monitor = "~/projects/shell-setup/bin/monitor.sh";
+      cbcl = "xclip -sel c < /dev/null; xclip < /dev/null";
+    };
+
+    shellGlobalAliases = {
+      cbcp = "xclip -sel c";
+      cbp  = "xclip -o -sel c";
     };
 
     loginExtra =
