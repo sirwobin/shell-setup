@@ -5,6 +5,12 @@ cd nixpkgs
 ln -s ~/projects/shell-setup/nix/home.nix .
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+# yubikey
+nix-shell -p pam_u2f pamtester
+mkdir -p ~/.config/Yubico
+pamu2fcfg > .config/Yubico/u2f_keys
+pamtester sudo robin authenticate
+
 # wireguard
 cd /root
 umask 077

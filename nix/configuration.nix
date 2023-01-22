@@ -57,6 +57,22 @@
   services.xserver.displayManager.defaultSession = "none+i3";
   services.xserver.windowManager.i3.enable = true;
 
+  # Enable yubikey services and programs
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+  security.pam = {
+    yubico = {
+      enable = true;
+      debug = true;
+      mode = "challenge-response";
+    };
+    services.sudo.u2fAuth = true;
+  };
+
   # Define a user account.
   users.users.robin = {
     isNormalUser = true;
