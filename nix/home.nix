@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [ neovim fzf htop-vim powerline-go zsh-autosuggestions dtrx tree which pulseaudioFull
                                kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
-                               libreoffice brightnessctl encfs vlc mplayer ranger xclip
+                               libreoffice brightnessctl encfs vlc mplayer ranger xclip nomacs
   ];
 
   xresources.properties = {
