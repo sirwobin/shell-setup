@@ -77,7 +77,7 @@
   users.users.robin = {
     isNormalUser = true;
     description = "Robin L";
-    extraGroups = [ "networkmanager" "wheel" "audio" "scanner" "lp" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "scanner" "lp" "vboxusers" ];
     shell = pkgs.zsh;
   };
 
@@ -115,5 +115,8 @@
   # Allow Canon scanner to be detected.
   networking.firewall.allowedTCPPorts = [ 8612 ];
   # Wireguard port.
-  networking.firewall.allowedUDPPorts = [ 2049 ];
+  # networking.firewall.allowedUDPPorts = [ 2049 ];
+
+  # Enable virtualbox. Ref <https://nixos.wiki/wiki/Virtualbox>
+  virtualisation.virtualbox.host.enable = true;
 }
