@@ -88,6 +88,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.localBinInPath = true;
   environment.systemPackages = with pkgs; [
     dunst
     wireguard-tools

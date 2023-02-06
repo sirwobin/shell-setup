@@ -4,6 +4,8 @@ mkdir nixpkgs
 cd nixpkgs
 ln -s ~/projects/shell-setup/nix/home.nix .
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+cd ~/.local
+ln -s ~/projects/shell-setup/bin .
 
 # yubikey
 nix-shell -p pam_u2f pamtester
