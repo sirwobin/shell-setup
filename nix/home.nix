@@ -60,13 +60,13 @@
       ll = "ls -lAh";
       m = "less -FnqRX";
       lstgz = "dtrx -l";
-      pi = "ssh 192.168.2.10 -t \"tmux attach\"";
+      pi = "TERM=xterm ssh 192.168.2.10 -t \"tmux attach\"";
       lr = "lein repl";
       lf = "lein figwheel";
       nsp = "nix-shell -p";
       hms = "nix-shell -p neovim home-manager --command 'cd ~/projects/shell-setup/nix; nvim home.nix; return'";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
-      monitor = "~/projects/shell-setup/bin/monitor.sh";
+      monitor = "~/projects/shell-setup/bin/monitor";
       cbcl = "xclip -sel c < /dev/null; xclip < /dev/null";
     };
 

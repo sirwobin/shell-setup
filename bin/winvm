@@ -1,0 +1,4 @@
+#!/bin/sh
+
+VBoxManage startvm "Windows 11"
+
