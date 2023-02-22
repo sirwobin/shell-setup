@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gnucash "$HOME/Documents/VVE/VVE Botterweg Grootboek 2023.gnucash"
