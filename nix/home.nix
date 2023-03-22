@@ -66,6 +66,7 @@
       nsp = "nix-shell -p";
       hms = "nix-shell -p neovim home-manager --command 'cd ~/projects/shell-setup/nix; nvim home.nix; return'";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
+      pds = "cd ~/projects/pds-website; nix-shell";
       monitor = "~/projects/shell-setup/bin/monitor";
       cbcl = "xclip -sel c < /dev/null; xclip < /dev/null";
     };
@@ -108,6 +109,8 @@
     extraConfig = {
       init = {
         defaultBranch = "main";
+        core.editor = "nvim";
+        push.autoSetupRemote = true;
       };
     };
 
