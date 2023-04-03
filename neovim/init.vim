@@ -84,7 +84,8 @@ set guicursor=n-v-c:block-Cursor,i:blinkwait700-blinkon400-blinkoff250-Cursor
 command FixTrailingSpaces %s/\s\+$//
 command JsonFormat :%!python3 -m json.tool<Enter>
 command NameTreeSitterTextObject execute "lua print(vim.treesitter.get_node_at_cursor())"
-command EALamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :external-api-lambda)"
+command TEALamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :tantalus-external-api-lambda)"
+command MEALamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :metronome-external-api-lambda)"
 command CTMLamdaRepl execute "ConjureEval (shadow.cljs.devtools.api/repl :customer-token-manager-lambda)"
 command GP Git push
 
