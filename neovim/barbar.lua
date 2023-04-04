@@ -38,7 +38,7 @@ vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>', {remap = false, silent = true
 vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>', {remap = false, silent = true})
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>', {remap = false, silent = true})
 
-vim.api.nvim_set_hl(0, 'BufferCurrent', {fg=white})
+vim.api.nvim_set_hl(0, 'BufferCurrent', {fg='#ffffff'})
 vim.api.nvim_set_hl(0, 'BufferCurrentMod', {fg='#ff0000'})
 vim.api.nvim_set_hl(0, 'BufferInactiveMod', {fg='#af0000'})
 vim.api.nvim_set_hl(0, 'BufferVisibleMod', {fg='#e57474', bg='#3b4244'})
