@@ -79,7 +79,7 @@ set completeopt=menu,menuone,noselect
 
 " originally highlight CursorLine term=underline ctermbg=238 guibg=#2d3033 guisp=#36393c
 "highlight CursorLine term=underline ctermbg=238 guibg=#4C4C4C guisp=#36393c
-highlight CursorLine guibg=#708090
+highlight CursorLine guibg=#36454F
 set guicursor=n-v-c:block-Cursor,i:blinkwait700-blinkon400-blinkoff250-hor25-Cursor
 command FixTrailingSpaces %s/\s\+$//
 command JsonFormat :%!python3 -m json.tool<Enter>
