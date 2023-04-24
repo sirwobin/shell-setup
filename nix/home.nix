@@ -6,7 +6,7 @@
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ neovim fzf htop-vim powerline-go zsh-autosuggestions dtrx tree which pulseaudioFull
+  home.packages = with pkgs; [ neovim fzf htop-vim powerline-go zsh-autosuggestions tree which pulseaudioFull
                                kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
                                libreoffice brightnessctl encfs vlc mplayer ranger xclip nomacs
   ];
@@ -67,7 +67,7 @@
       hms = "nix-shell -p neovim home-manager --command 'cd ~/projects/shell-setup/nix; nvim home.nix; return'";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
       pds = "cd ~/projects/pds-website; nix-shell";
-      monitor = "~/projects/shell-setup/bin/monitor";
+      zoom-start = "NIXPKGS_ALLOW_UNFREE=1 nix-shell -p zoom-us --command 'zoom &'";
       cbcl = "xclip -sel c < /dev/null; xclip < /dev/null";
     };
 
