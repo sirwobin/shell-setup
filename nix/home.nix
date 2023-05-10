@@ -105,7 +105,7 @@
     enable = true;
     userName = "robin";
     userEmail = "robin108@gmail.com";
-    # ignores = [ "" ];
+    ignores = [ "rl-notes*" "*.swp" ];
     extraConfig = {
       init = {
         defaultBranch = "main";
