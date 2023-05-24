@@ -104,7 +104,7 @@
   programs.git = {
     enable = true;
     userName = "robin";
-    userEmail = "robin108@gmail.com";
+    userEmail = "##############";
     ignores = [ "rl-notes*" "*.swp" ];
     extraConfig = {
       init = {
