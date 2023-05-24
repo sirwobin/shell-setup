@@ -6,7 +6,7 @@
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ neovim fzf htop-vim powerline-go zsh-autosuggestions tree which pulseaudioFull
+  home.packages = with pkgs; [ neovim fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
                                kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
                                libreoffice brightnessctl encfs vlc mplayer ranger xclip nomacs
   ];
