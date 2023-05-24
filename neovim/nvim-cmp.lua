@@ -32,3 +32,8 @@ cmp.setup {
 --     { name = 'buffer' }
 --   }
 -- })
+
+vim.api.nvim_create_user_command('CompleteOff', function()
+  cmp.setup.buffer { enabled = false }
+end, {})
+
