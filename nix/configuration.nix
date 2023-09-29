@@ -45,7 +45,7 @@
     # bjnp://192.168.2.24
   # '';
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     fantasque-sans-mono
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
