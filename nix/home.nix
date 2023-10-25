@@ -8,12 +8,37 @@
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
                                kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
-                               libreoffice brightnessctl encfs vlc mplayer ranger xclip nomacs
+                               libreoffice brightnessctl encfs vlc mplayer ranger xclip nomacs xorg.xkbcomp
   ];
 
   xresources.properties = {
     "Xft.dpi" = 120;
   };
+
+  xsession.enable = true;
+  xsession.profileExtra = ''
+    setxkbmap -option compose:menu
+    xinput --set-prop 16 "libinput Accel Speed" 1
+  '';
+
+  home.file.".XCompose".text = ''
+    include "%L"
+
+    <Multi_key> <g> <a> : "α"
+    <Multi_key> <g> <b> : "β"
+    <Multi_key> <g> <g> : "γ"
+    <Multi_key> <g> <d> : "δ"
+    <Multi_key> <g> <e> : "ε"
+    <Multi_key> <g> <l> : "λ"
+    <Multi_key> <g> <m> : "μ"
+    <Multi_key> <g> <p> : "π"
+    <Multi_key> <g> <s> : "σ"
+    <Multi_key> <g> <t> : "θ"
+    <Multi_key> <4> <e> : "€"
+    <Multi_key> <4> <l> : "£"
+    <Multi_key> <4> <y> : "¥"
+    <Multi_key> <4> <r> : "₹"
+  '';
 
   programs.zsh = {
     enable = true;
