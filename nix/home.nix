@@ -6,7 +6,7 @@
   home.stateVersion = "22.05";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ neovim fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
+  home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
                                kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
                                libreoffice brightnessctl encfs vlc mplayer ranger xclip nomacs
   ];
@@ -56,8 +56,8 @@
     };
 
     shellAliases = {
-      l = "ls -lh";
-      ll = "ls -lAh";
+      l = "lsd -l";
+      ll = "lsd -lA";
       m = "less -FnqRX";
       lstgz = "dtrx -l";
       pi = "TERM=xterm ssh 192.168.2.10 -t \"tmux attach\"";
@@ -69,11 +69,11 @@
       pds = "cd ~/projects/pds-website; nix-shell";
       zoom-start = "NIXPKGS_ALLOW_UNFREE=1 nix-shell -p zoom-us --command 'zoom &'";
       cbcl = "xclip -sel c < /dev/null; xclip < /dev/null";
+      cbp  = "xclip -o -sel c";
     };
 
     shellGlobalAliases = {
       cbcp = "xclip -sel c";
-      cbp  = "xclip -o -sel c";
     };
 
     loginExtra =
