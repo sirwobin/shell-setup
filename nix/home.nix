@@ -101,12 +101,12 @@
       l = "lsd -l";
       ll = "lsd -lA";
       m = "less -FnqRX";
-      lstgz = "dtrx -l";
+      lstgz = "tar -tzvf";
       pi = "TERM=xterm ssh 192.168.2.10 -t \"tmux attach\"";
       lr = "lein repl";
       lf = "lein figwheel";
+      nis = "nix-shell";
       nsp = "nix-shell -p";
-      hms = "nix-shell -p neovim home-manager --command 'cd ~/projects/shell-setup/nix; nvim home.nix; return'";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
       pds = "cd ~/projects/pds-website; nix-shell";
       zoom-start = "NIXPKGS_ALLOW_UNFREE=1 nix-shell -p zoom-us --command 'zoom &'";
