@@ -38,6 +38,23 @@
     <Multi_key> <4> <l> : "£"
     <Multi_key> <4> <y> : "¥"
     <Multi_key> <4> <r> : "₹"
+    <Multi_key> <f> <h> : "🙂"
+    <Multi_key> <f> <s> : "🙁"
+    <Multi_key> <f> <d> : "😞"
+    <Multi_key> <f> <a> : "😡"
+    <Multi_key> <f> <w> : "😉"
+    <Multi_key> <f> <o> : "😳"
+    <Multi_key> <f> <l> : "🥰"
+    <Multi_key> <e> <l> : "❤️"
+    <Multi_key> <e> <f> : "🤦🏻‍"
+    <Multi_key> <e> <s> : "🤷🏻‍"
+    <Multi_key> <e> <t> <u> : "👍🏻"
+    <Multi_key> <e> <t> <d> : "👎🏻"
+    <Multi_key> <e> <p> : "👌🏻"
+    <Multi_key> <e> <w> : "👋🏻"
+    <Multi_key> <e> <h> : "🫶🏻"
+    <Multi_key> <e> <r> : "🚀"
+    <Multi_key> <t> <s> : "¯\_(ツ)_/¯"
   '';
 
   programs.zsh = {
