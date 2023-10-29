@@ -18,7 +18,7 @@
   xsession.enable = true;
   xsession.profileExtra = ''
     setxkbmap -option compose:menu
-    xinput --set-prop 16 "libinput Accel Speed" 1
+    xinput --set-prop "FocalTechPS/2 FocalTech Touchpad" "libinput Accel Speed" 1
   '';
 
   home.file.".XCompose".text = ''
