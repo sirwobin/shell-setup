@@ -176,6 +176,15 @@
 
   };
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      nonylene.dark-molokai-theme
+      dbaeumer.vscode-eslint
+    ];
+  };
+
   programs.tmux = {
     enable = true;
     baseIndex = 1;
