@@ -9,6 +9,7 @@
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
                                kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
                                libreoffice brightnessctl encfs vlc mplayer ranger xclip nomacs xorg.xkbcomp
+                               difftastic
   ];
 
   xresources.properties = {
@@ -67,19 +68,13 @@
     <Multi_key> <Up> <Down> : "↕"
     <Multi_key> <Down> <Up> : "↕"
     <Multi_key> <z> <Down> : "↯"
-    <Multi_key> <=> <Up> : "⇑"
-    <Multi_key> <=> <Down> : "⇓"
-    <Multi_key> <=> <Left> : "⇐"
-    <Multi_key> <=> <Right> : "⇒"
-    <Multi_key> <=> <-> : "⇔"
-    <Multi_key> <=> <|> : "⇕"
   '';
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     history.share = false;
 
     plugins = [ 
@@ -89,8 +84,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "chisui";
           repo = "zsh-nix-shell";
-          rev = "v0.7.0";
-          sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
+          rev = "v0.8.0";
+          sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
         };
       }
     ];
@@ -102,6 +97,7 @@
 
     sessionVariables = {
       EDITOR = "nvim";
+      GIT_EXTERNAL_DIFF = "difft";
     };
 
     localVariables = {
