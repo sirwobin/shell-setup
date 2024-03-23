@@ -6,13 +6,13 @@ set t_Co=256
 
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'hzchirs/vim-material'
-Plug 'Everblush/everblush.vim'
+Plug 'craftzdog/solarized-osaka.nvim'
+Plug 'jacoborus/tender.vim'
 " Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 
 " Conjure
-Plug 'Olical/conjure', {'tag': 'v4.42.0'}
+Plug 'Olical/conjure', {'tag': 'v4.50.0'}
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'clojure-vim/vim-jack-in'
@@ -45,9 +45,8 @@ if has('win32')
 endif
 
 " colorscheme everblush
-let g:material_style='oceanic'
 set background=dark
-colorscheme vim-material
+colorscheme tender
 
 " let g:indentLine_char = ''
 " let g:indentLine_first_char = ''

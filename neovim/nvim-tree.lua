@@ -75,7 +75,9 @@ local function on_attach(bufnr)
 end
 
 require("nvim-tree").setup({
-  sort_by = "case_insensitive",
+  sort = {
+    sorter = "name",
+  },
   on_attach = on_attach,
   view = {
     adaptive_size = true,
