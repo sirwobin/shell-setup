@@ -71,27 +71,28 @@
   programs.zsh.enable = true;
   # programs.steam.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Use LightDM for login and no desktop manager
-  services.xserver.displayManager.defaultSession = "none+i3";
-  services.xserver.windowManager.i3.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  # Enable Wayland support
+  security.polkit.enable = true;
+  boot.kernelModules = [ "nouveau" ];
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      mesa mesa.drivers
+    ];
+  };
+  programs.light.enable = true;
+  systemd.user.services.kanshi = {
+    description = "kanshi daemon";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
+    };
+  };
 
   fonts.packages = with pkgs; [
     fantasque-sans-mono
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   # Enable CUPS to print documents.
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "cnijfilter2" ];
@@ -125,9 +126,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
   # Enable yubikey services and programs
   services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
@@ -148,7 +146,7 @@
   users.users.robin = {
     isNormalUser = true;
     description = "Robin Lunn";
-    extraGroups = [ "networkmanager" "wheel" "audio" "scanner" "lp" "vboxusers" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "scanner" "lp" "vboxusers" ];
     shell = pkgs.zsh;
   };
 

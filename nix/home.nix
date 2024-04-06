@@ -1,5 +1,10 @@
 { config, pkgs, lib, ... }:
-
+let
+  fontConf = {
+    names = [ "FiraCode Nerd Font Mono" ];
+    size = 18.0;
+  };
+in
 {
   home.username = "robin";
   home.homeDirectory = "/home/robin";
@@ -7,20 +12,134 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
-                               kitty xss-lock firefox chromium gnucash bitwarden bitwarden-cli gscan2pdf tesseract5
-                               libreoffice brightnessctl encfs vlc mplayer ranger xclip nomacs xorg.xkbcomp
-                               difftastic
+                               kitty xss-lock firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5
+                               libreoffice encfs vlc mplayer ranger nomacs difftastic wl-clipboard
   ];
 
-  xresources.properties = {
-    "Xft.dpi" = 120;
+  services.kanshi = {
+    enable = true;
+
   };
 
-  xsession.enable = true;
-  xsession.profileExtra = ''
-    setxkbmap -option compose:menu
-    xinput --set-prop "FocalTechPS/2 FocalTech Touchpad" "libinput Accel Speed" 1
-  '';
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      terminal = "kitty";
+      output = {
+        "eDP-1" = {
+          mode = "3200x1800";
+          pos = "800 2160";
+          scale = "1.5";
+        };
+        "HDMI-A-2" = {
+          mode = "3840x2160";
+          pos = "0 0";
+        };
+      };
+
+      fonts = fontConf;
+
+      window = {
+        titlebar = true;
+        border = 2;
+      };
+
+      workspaceOutputAssign = [
+        { workspace = "1"; output = "eDP-1"; }
+        { workspace = "2"; output = "eDP-1"; }
+        { workspace = "3"; output = "eDP-1"; }
+        { workspace = "4"; output = "eDP-1"; }
+        { workspace = "5"; output = "eDP-1"; }
+        { workspace = "6"; output = "HDMI-A-2"; }
+        { workspace = "7"; output = "HDMI-A-2"; }
+        { workspace = "8"; output = "HDMI-A-2"; }
+        { workspace = "9"; output = "HDMI-A-2"; }
+        { workspace = "10"; output = "HDMI-A-2"; }
+      ];
+
+      keybindings =
+        let
+          mod = config.wayland.windowManager.sway.config.modifier;
+          inherit (config.wayland.windowManager.sway.config)
+            menu
+            terminal
+            ;
+        in
+        {
+          "${mod}+Return" = "exec ${terminal}";
+          "${mod}+Shift+q" = "kill";
+          "${mod}+d" = "exec ${menu}";
+
+          "${mod}+Left" = "focus left";
+          "${mod}+Down" = "focus down";
+          "${mod}+Up" = "focus up";
+          "${mod}+Right" = "focus right";
+
+          "${mod}+Shift+Left" = "move left";
+          "${mod}+Shift+Down" = "move down";
+          "${mod}+Shift+Up" = "move up";
+          "${mod}+Shift+Right" = "move right";
+
+          "${mod}+Shift+space" = "floating toggle";
+          "${mod}+space" = "focus mode_toggle";
+
+          "${mod}+1" = "workspace number 1";
+          "${mod}+2" = "workspace number 2";
+          "${mod}+3" = "workspace number 3";
+          "${mod}+4" = "workspace number 4";
+          "${mod}+5" = "workspace number 5";
+          "${mod}+6" = "workspace number 6";
+          "${mod}+7" = "workspace number 7";
+          "${mod}+8" = "workspace number 8";
+          "${mod}+9" = "workspace number 9";
+          "${mod}+0" = "workspace number 10";
+
+          "${mod}+Shift+1" = "move container to workspace number 1";
+          "${mod}+Shift+2" = "move container to workspace number 2";
+          "${mod}+Shift+3" = "move container to workspace number 3";
+          "${mod}+Shift+4" = "move container to workspace number 4";
+          "${mod}+Shift+5" = "move container to workspace number 5";
+          "${mod}+Shift+6" = "move container to workspace number 6";
+          "${mod}+Shift+7" = "move container to workspace number 7";
+          "${mod}+Shift+8" = "move container to workspace number 8";
+          "${mod}+Shift+9" = "move container to workspace number 9";
+          "${mod}+Shift+0" = "move container to workspace number 10";
+
+#          "${mod}+p" = "exec ${lib.getExe pkgs.slurp} | ${lib.getExe pkgs.grim} -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
+
+          "${mod}+h" = "split h";
+          "${mod}+v" = "split v";
+          "${mod}+z" = "fullscreen toggle";
+          "${mod}+comma" = "layout stacking";
+          "${mod}+period" = "layout tabbed";
+          "${mod}+slash" = "layout toggle split";
+          "${mod}+a" = "focus parent";
+          "${mod}+s" = "focus child";
+
+          "${mod}+Shift+c" = "reload";
+          "${mod}+Shift+r" = "restart";
+          "${mod}+Shift+v" = ''mode "system:  [r]eboot  [p]oweroff  [l]ogout"'';
+
+          "${mod}+r" = "mode resize";
+
+#          "${mod}+l" = "exec ${lockCmd}";
+#          "${mod}+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss";
+#          "${mod}+Shift+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss -a";
+
+          "XF86AudioMute" = "exec pactl set-source-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 10";
+          "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 10";
+
+          "${mod}+apostrophe" = "move workspace to output right";
+
+          "${mod}+minus" = "scratchpad show";
+          "${mod}+underscore" = "move container to scratchpad";
+        };
+    };
+  };
 
   home.file.".XCompose".text = ''
     include "%L"
