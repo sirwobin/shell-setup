@@ -26,6 +26,13 @@ in
     config = rec {
       modifier = "Mod4";
       terminal = "kitty";
+      input = {
+        "type:keyboard" = {
+          xkb_layout = "us";
+          repeat_delay = "200";
+          repeat_rate = "25";
+        };
+      };
       output = {
         "eDP-1" = {
           mode = "3200x1800";
