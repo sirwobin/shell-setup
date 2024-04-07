@@ -12,13 +12,24 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
-                               kitty xss-lock firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5
+                               kitty firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5
                                libreoffice encfs vlc mplayer ranger nomacs difftastic wl-clipboard
   ];
 
-  services.kanshi = {
-    enable = true;
+  programs.swaylock.enable = true;
+  services.kanshi.enable = true;
+  services.mako.enable = true;
 
+  services.swayidle = {
+    enable = true;
+    events = [
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
+      { event = "after-resume"; command = "swaymsg \"output\" * dpms on"; }
+    ];
+    timeouts = [
+      { timeout = 300; command = "${pkgs.swaylock}/bin/swaylock"; }
+      { timeout = 600; command = "swaymsg \"output\" * dpms off"; }
+    ];
   };
 
   programs.i3status = {
@@ -36,34 +47,34 @@ in
     modules = {
       load = {
         position = 0;
-        settings.format = "load: %1min, %5min, %15min";
+        settings.format = "load: %1min, %5min, %15min ";
       };
       memory = {
         position = 1;
-        settings.format = "MEM %free (%used)";
+        settings.format = " MEM %free (%used) ";
         settings.threshold_degraded = "10%";
-        settings.format_degraded = "LOW %free";
+        settings.format_degraded = " LOW %free ";
       };
       "battery all" = {
         position = 2;
         settings.format = "%status %percentage %remaining %emptytime";
         settings.format_down = "No battery";
-        settings.status_chr = "⚡ CHR";
-        settings.status_bat = "🔋 BAT";
-        settings.status_unk = "? UNK";
-        settings.status_full = "☻ FULL";
+        settings.status_chr = "⚡ ";
+        settings.status_bat = "🔋 ";
+        settings.status_unk = "? ";
+        settings.status_full = "☻ ";
         settings.path = "/sys/class/power_supply/BAT%d/uevent";
         settings.low_threshold = "10";
       };
       "volume master" = {
         position = 3;
-        settings.format = "🔊 %volume";
-        settings.format_muted = "🔇";
+        settings.format = " 🔊 %volume ";
+        settings.format_muted = " 🔇 ";
         settings.device = "default";
       };
       time = {
         position = 4;
-        settings.format = "%Y-%m-%d %H:%M";
+        settings.format = " %Y-%m-%d %H:%M";
       };
       ipv6.enable = false;
       "wireless _first_".enable = false;
@@ -71,6 +82,11 @@ in
       "tztime local".enable = false;
       "disk /".enable = false;
     };
+  };
+
+  programs.fuzzel = {
+    enable = true;
+    settings.main.font = "FiraCode Nerd Font Mono:size=25";
   };
 
   wayland.windowManager.sway = {
@@ -124,6 +140,13 @@ in
         fonts = fontConf;
         trayOutput = "*";
       };
+
+      menu = lib.getExe pkgs.fuzzel;
+
+      startup = [
+        { command = "mako"; }
+        { command = "swayidle"; }
+      ];
 
       keybindings =
         let
@@ -190,11 +213,11 @@ in
 
           "${mod}+r" = "mode resize";
 
-#          "${mod}+l" = "exec ${lockCmd}";
-#          "${mod}+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss";
-#          "${mod}+Shift+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss -a";
+          "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock";
+          "${mod}+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss";
+          "${mod}+Shift+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss -a";
 
-          "XF86AudioMute" = "exec pactl set-source-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
           "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
           "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 10";
@@ -310,12 +333,12 @@ in
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
       pds = "cd ~/projects/pds-website; nix-shell";
       zoom-start = "NIXPKGS_ALLOW_UNFREE=1 nix-shell -p zoom-us --command 'zoom &'";
-      cbcl = "xclip -sel c < /dev/null; xclip < /dev/null";
-      cbp  = "xclip -o -sel c";
+      cbcl = "wl-copy < /dev/null";
+      cbp  = "wl-paste";
     };
 
     shellGlobalAliases = {
-      cbcp = "xclip -sel c";
+      cbcp = "wl-copy";
     };
 
     loginExtra =

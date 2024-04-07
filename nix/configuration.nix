@@ -142,6 +142,7 @@
       mode = "challenge-response";
     };
     services.sudo.u2fAuth = true;
+    services.swaylock = {};
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
