@@ -65,6 +65,14 @@ in
         { workspace = "10"; output = "HDMI-A-2"; }
       ];
 
+      bars = lib.singleton {
+        statusCommand = lib.getExe pkgs.i3status;
+        command = lib.getExe' pkgs.sway "swaybar";
+        position = "bottom";
+        fonts = fontConf;
+        trayOutput = "*";
+      };
+
       keybindings =
         let
           mod = config.wayland.windowManager.sway.config.modifier;
@@ -115,8 +123,8 @@ in
 
 #          "${mod}+p" = "exec ${lib.getExe pkgs.slurp} | ${lib.getExe pkgs.grim} -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
 
-          "${mod}+h" = "split h";
-          "${mod}+v" = "split v";
+#          "${mod}+h" = "split h";
+#          "${mod}+v" = "split v";
           "${mod}+z" = "fullscreen toggle";
           "${mod}+comma" = "layout stacking";
           "${mod}+period" = "layout tabbed";
