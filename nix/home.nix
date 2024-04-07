@@ -220,8 +220,6 @@ in
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 10";
           "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 10";
 
-#          "${mod}+apostrophe" = "move workspace to output right";
-
           "${mod}+minus" = "scratchpad show";
           "${mod}+underscore" = "move container to scratchpad";
         };
