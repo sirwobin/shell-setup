@@ -97,6 +97,7 @@ in
       input = {
         "type:keyboard" = {
           xkb_layout = "us";
+          xkb_options = "compose:menu";
           repeat_delay = "200";
           repeat_rate = "25";
         };
@@ -201,15 +202,10 @@ in
 #          "${mod}+h" = "split h";
 #          "${mod}+v" = "split v";
           "${mod}+z" = "fullscreen toggle";
-          "${mod}+comma" = "layout stacking";
           "${mod}+period" = "layout tabbed";
           "${mod}+slash" = "layout toggle split";
           "${mod}+a" = "focus parent";
           "${mod}+s" = "focus child";
-
-          "${mod}+Shift+c" = "reload";
-          "${mod}+Shift+r" = "restart";
-          "${mod}+Shift+v" = ''mode "system:  [r]eboot  [p]oweroff  [l]ogout"'';
 
           "${mod}+r" = "mode resize";
 
@@ -218,12 +214,13 @@ in
           "${mod}+Shift+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss -a";
 
           "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86RFKill" = "exec systemctl hibernate";
           "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
           "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 10";
           "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 10";
 
-          "${mod}+apostrophe" = "move workspace to output right";
+#          "${mod}+apostrophe" = "move workspace to output right";
 
           "${mod}+minus" = "scratchpad show";
           "${mod}+underscore" = "move container to scratchpad";
