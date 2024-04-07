@@ -302,6 +302,7 @@ in
     sessionVariables = {
       EDITOR = "nvim";
       GIT_EXTERNAL_DIFF = "difft";
+      MOZ_ENABLE_WAYLAND = "1";
     };
 
     localVariables = {
