@@ -59,10 +59,10 @@ in
         position = 2;
         settings.format = "%status %percentage %remaining %emptytime";
         settings.format_down = "No battery";
-        settings.status_chr = "⚡ ";
-        settings.status_bat = "🔋 ";
-        settings.status_unk = "? ";
-        settings.status_full = "☻ ";
+        settings.status_chr = "⚡";
+        settings.status_bat = "🔋";
+        settings.status_unk = "?";
+        settings.status_full = "☻";
         settings.path = "/sys/class/power_supply/BAT%d/uevent";
         settings.low_threshold = "10";
       };
