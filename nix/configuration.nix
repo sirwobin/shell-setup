@@ -89,6 +89,8 @@
     };
   };
 
+  fonts.fontDir.enable = true;
+  fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     fantasque-sans-mono
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
