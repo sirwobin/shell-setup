@@ -89,6 +89,17 @@
     };
   };
 
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = "robin";
+      };
+      default_session = initial_session;
+    };
+  };
+
   fonts.fontDir.enable = true;
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
