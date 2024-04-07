@@ -21,6 +21,58 @@ in
 
   };
 
+  programs.i3status = {
+    enable = true;
+
+    general = {
+      output_format = "i3bar";
+      colors = true;
+      interval = 10;
+#      color_good = "#${colorscheme.dark.green}";
+#      color_degraded = "#${colorscheme.dark.orange}";
+#      color_bad = "#${colorscheme.dark.red}";
+    };
+
+    modules = {
+      load = {
+        position = 0;
+        settings.format = "load: %1min, %5min, %15min";
+      };
+      memory = {
+        position = 1;
+        settings.format = "MEM %free (%used)";
+        settings.threshold_degraded = "10%";
+        settings.format_degraded = "LOW %free";
+      };
+      "battery all" = {
+        position = 2;
+        settings.format = "%status %percentage %remaining %emptytime";
+        settings.format_down = "No battery";
+        settings.status_chr = "⚡ CHR";
+        settings.status_bat = "🔋 BAT";
+        settings.status_unk = "? UNK";
+        settings.status_full = "☻ FULL";
+        settings.path = "/sys/class/power_supply/BAT%d/uevent";
+        settings.low_threshold = "10";
+      };
+      "volume master" = {
+        position = 3;
+        settings.format = "🔊 %volume";
+        settings.format_muted = "🔇";
+        settings.device = "default";
+      };
+      time = {
+        position = 4;
+        settings.format = "%Y-%m-%d %H:%M";
+      };
+      ipv6.enable = false;
+      "wireless _first_".enable = false;
+      "ethernet _first_".enable = false;
+      "tztime local".enable = false;
+      "disk /".enable = false;
+    };
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
