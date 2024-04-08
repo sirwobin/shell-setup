@@ -12,11 +12,28 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
-                               kitty firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5
-                               libreoffice encfs vlc mplayer ranger nomacs difftastic wl-clipboard
+                               firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5
+                               libreoffice encfs vlc mplayer ranger nomacs difftastic wl-clipboard wallutils
   ];
 
-  programs.swaylock.enable = true;
+  programs.kitty = {
+    enable = true;
+    font.name = "Fantasque Sans Mono";
+    font.size = 20;
+    theme = "Wombat";
+    keybindings = {
+      "shift+alt+." = "no_op";
+      "shift+alt+," = "no_op";
+    };
+  };
+
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      indicator-radius = 110;
+      image = "Pictures/lockscreen-wallpaper/current.jpg";
+    };
+  };
   services.kanshi.enable = true;
   services.mako.enable = true;
 
@@ -147,6 +164,7 @@ in
       startup = [
         { command = "mako"; }
         { command = "swayidle"; }
+        { command = "setrandom Pictures/desktop-wallpaper"; }
       ];
 
       keybindings =
@@ -201,6 +219,7 @@ in
 
 #          "${mod}+h" = "split h";
 #          "${mod}+v" = "split v";
+          "${mod}+w" = "exec setrandom Pictures/desktop-wallpaper";
           "${mod}+z" = "fullscreen toggle";
           "${mod}+period" = "layout tabbed";
           "${mod}+slash" = "layout toggle split";
@@ -300,9 +319,9 @@ in
     };
 
     sessionVariables = {
+      VISUAL = "nvim";
       EDITOR = "nvim";
       GIT_EXTERNAL_DIFF = "difft";
-      MOZ_ENABLE_WAYLAND = "1";
     };
 
     localVariables = {
@@ -329,12 +348,12 @@ in
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
       pds = "cd ~/projects/pds-website; nix-shell";
       zoom-start = "NIXPKGS_ALLOW_UNFREE=1 nix-shell -p zoom-us --command 'zoom &'";
-      cbcl = "wl-copy < /dev/null";
-      cbp  = "wl-paste";
+      cbd = "wl-copy < /dev/null";
+      p  = "wl-paste";
     };
 
     shellGlobalAliases = {
-      cbcp = "wl-copy";
+      y = "wl-copy";
     };
 
     loginExtra =
