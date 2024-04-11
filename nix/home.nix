@@ -164,7 +164,7 @@ in
       startup = [
         { command = "mako"; }
         { command = "swayidle"; }
-        { command = "setrandom Pictures/desktop-wallpaper"; }
+        { command = "setrandom --mode scale Pictures/desktop-wallpaper"; }
       ];
 
       keybindings =
@@ -219,7 +219,7 @@ in
 
 #          "${mod}+h" = "split h";
 #          "${mod}+v" = "split v";
-          "${mod}+w" = "exec setrandom Pictures/desktop-wallpaper";
+          "${mod}+w" = "exec setrandom --mode scale Pictures/desktop-wallpaper";
           "${mod}+z" = "fullscreen toggle";
           "${mod}+period" = "layout tabbed";
           "${mod}+slash" = "layout toggle split";
