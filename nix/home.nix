@@ -322,6 +322,7 @@ in
       VISUAL = "nvim";
       EDITOR = "nvim";
       GIT_EXTERNAL_DIFF = "difft";
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=241";
     };
 
     localVariables = {
