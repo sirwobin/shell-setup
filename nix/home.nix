@@ -16,6 +16,17 @@ in
                                libreoffice encfs vlc mplayer ranger nomacs difftastic wl-clipboard wallutils
   ];
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.apple-cursor;
+    name = "macOS-Monterey-White";
+    size = 32; # 22 24 28 32 40 48 56 64 72 80 88 96
+    x11 = {
+      enable = true;
+      defaultCursor = "macOS-Monterey-White";
+    };
+  };
+
   programs.kitty = {
     enable = true;
     font.name = "Fantasque Sans Mono";
