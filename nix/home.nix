@@ -118,6 +118,12 @@ in
           repeat_delay = "200";
           repeat_rate = "25";
         };
+        "type:touchpad" = {
+          tap = "enabled";
+          pointer_accel = "1";
+          click_method = "clickfinger";
+          natural_scroll = "enabled";
+        };
       };
       output = {
         "eDP-1" = {
