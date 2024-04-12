@@ -12,6 +12,7 @@
     ];
 
   # Bootloader.
+  boot.kernelParams = [ "mds=off" "tsx_async_abort=off" "nosmt=force" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
