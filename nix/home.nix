@@ -13,7 +13,7 @@ in
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
                                firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5
-                               libreoffice encfs vlc mplayer ranger nomacs difftastic wl-clipboard wallutils
+                               libreoffice encfs vlc mpv ranger nomacs difftastic wl-clipboard wallutils
   ];
 
   home.pointerCursor = {
@@ -85,7 +85,8 @@ in
       };
       "battery all" = {
         position = 2;
-        settings.format = "%status %percentage %remaining %emptytime";
+        # settings.format = "%status %percentage %remaining %emptytime";
+        settings.format = " %status %percentage ";
         settings.format_down = "No battery";
         settings.status_chr = "⚡";
         settings.status_bat = "🔋";
@@ -255,6 +256,7 @@ in
           "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 10";
           "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 10";
+          "XF86TouchpadToggle" = "exec sound-follow-monitor.sh";
 
           "${mod}+minus" = "scratchpad show";
           "${mod}+underscore" = "move container to scratchpad";
