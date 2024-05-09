@@ -12,8 +12,9 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
-                               firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5
+                               firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5 silver-searcher
                                libreoffice encfs vlc mpv ranger nomacs difftastic wl-clipboard wallutils
+                               networkmanagerapplet
   ];
 
   home.pointerCursor = {
