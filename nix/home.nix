@@ -234,6 +234,20 @@ in
           "${mod}+Shift+9" = "move container to workspace number 9";
           "${mod}+Shift+0" = "move container to workspace number 10";
 
+          # Mouse control.  Would rather use warpd.
+          "${mod}+Alt+Left" = "seat - cursor move -90 0";
+          "${mod}+Alt+Right" = "seat - cursor move 90 0";
+          "${mod}+Alt+Up" = "seat - cursor move 0 -90";
+          "${mod}+Alt+Down" = "seat - cursor move 0 90";
+          "${mod}+Control+Left" = "seat - cursor move -10 0";
+          "${mod}+Control+Right" = "seat - cursor move 10 0";
+          "${mod}+Control+Up" = "seat - cursor move 0 -10";
+          "${mod}+Control+Down" = "seat - cursor move 0 10";
+          "${mod}+Control+h" = "seat - cursor press button1";
+          "${mod}+Control+l" = "seat - cursor press button3";
+          "${mod}+Control+j" = "seat - cursor press button5";
+          "${mod}+Control+k" = "seat - cursor press button4";
+
 #          "${mod}+p" = "exec ${lib.getExe pkgs.slurp} | ${lib.getExe pkgs.grim} -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
 
 #          "${mod}+h" = "split h";
