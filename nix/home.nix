@@ -12,7 +12,7 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
-                               firefox chromium bitwarden bitwarden-cli gscan2pdf tesseract5 silver-searcher
+                               firefox bitwarden bitwarden-cli gscan2pdf tesseract5 silver-searcher
                                libreoffice encfs vlc mpv ranger nomacs difftastic wl-clipboard wallutils
                                networkmanagerapplet
   ];
@@ -437,6 +437,16 @@ in
     extensions = with pkgs.vscode-extensions; [
       nonylene.dark-molokai-theme
       dbaeumer.vscode-eslint
+    ];
+  };
+
+  programs.chromium = {
+    enable = true;
+    commandLineArgs = [ "--force-device-scale-factor=1.5" ];
+    extensions = [
+      { id = "nngceckbapebfimnlniiiahkandclblb"; }  # Bitwarden
+      { id = "fhcgjolkccmbidfldomjliifgaodjagh"; }  # cookie autodelete
+      { id = "fhcgjolkccmbidfldomjliifgaodjagh"; }  # vimium
     ];
   };
 
