@@ -3,7 +3,7 @@ local lspconfig = require('lspconfig')
 lspconfig.clojure_lsp.setup {
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
 }
--- lspconfig.tsserver.setup {}
+lspconfig.tsserver.setup {}
 --[[
 lspconfig.lua_ls.setup {
   cmd = 'lua-lsp',
@@ -29,7 +29,7 @@ lspconfig.lua_ls.setup {
   },
 }
 ]]--
-lspconfig.eslint.setup {}
+-- lspconfig.eslint.setup {}
 
 vim.keymap.set('n', '<Leader>dl', vim.diagnostic.setloclist)
 vim.keymap.set('n', '<Leader>dj', vim.diagnostic.goto_next)
