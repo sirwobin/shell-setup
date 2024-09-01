@@ -266,7 +266,7 @@ in
           "${mod}+Shift+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss -a";
 
           "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86RFKill" = "exec systemctl hibernate";
+          "XF86ScreenSaver" = "exec systemctl hibernate";
           "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
           "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
           "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 10";
@@ -419,7 +419,7 @@ in
   programs.git = {
     enable = true;
     userName = "robin";
-    userEmail = "##############";
+    userEmail = "robin108@gmail.com";
     ignores = [ "rl-notes*" "*.swp" ];
     extraConfig = {
       init = {
