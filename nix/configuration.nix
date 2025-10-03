@@ -29,11 +29,13 @@
   networking.hostName = "rl-nixtop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable network manager
+  # Enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.connectionConfig = {
     "wifi.powersave" = lib.mkForce 3;
@@ -63,7 +65,7 @@
   };
 
   # Enable nix flakes
-  nix.package = pkgs.nixFlakes;
+  nix.package = pkgs.nixVersions.latest;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -81,7 +83,7 @@
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      mesa mesa.drivers
+      mesa
     ];
   };
   programs.light.enable = true;
@@ -108,7 +110,8 @@
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     fantasque-sans-mono
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
   ];
 
   # Enable CUPS to print documents.
@@ -126,8 +129,32 @@
   services.avahi.publish.userServices = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
+  services.pulseaudio = {
+    enable = false;
+    package = pkgs.pulseaudioFull;
+    configFile = pkgs.writeText "default.pa" ''
+      load-module module-bluetooth-policy
+      load-module module-bluetooth-discover
+      ## module fails to load with 
+      ##   module-bluez5-device.c: Failed to get device path from module arguments
+      ##   module.c: Failed to load module "module-bluez5-device" (argument: ""): initialization failed.
+      # load-module module-bluez5-device
+      # load-module module-bluez5-discover
+    '';
+    extraConfig = "
+  load-module module-switch-on-connect
+";
+  };
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -167,25 +194,20 @@
     shell = pkgs.zsh;
   };
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "robin";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-
   # Allow unfree packages
   # unstable = import <unstable> { config.allowUnfree = true; };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    dunst
     wireguard-tools
-    networkmanagerapplet
     blueman
+    exfatprogs
   ];
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
   environment.localBinInPath = true;
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -198,7 +220,12 @@
 
   # List services that you want to enable:
   # Enable virtualbox. Ref <https://nixos.wiki/wiki/Virtualbox>
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

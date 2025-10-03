@@ -12,27 +12,27 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
-                               firefox bitwarden bitwarden-cli gscan2pdf tesseract5 silver-searcher
+                               bitwarden bitwarden-cli gscan2pdf tesseract5 silver-searcher
                                libreoffice encfs vlc mpv ranger nomacs difftastic wl-clipboard wallutils
                                networkmanagerapplet
   ];
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.apple-cursor;
-    name = "macOS-Monterey-White";
-    size = 32; # 22 24 28 32 40 48 56 64 72 80 88 96
-    x11 = {
-      enable = true;
-      defaultCursor = "macOS-Monterey-White";
-    };
-  };
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   package = pkgs.apple-cursor;
+  #   name = "macOS-Monterey-White";
+  #   size = 32; # 22 24 28 32 40 48 56 64 72 80 88 96
+  #   x11 = {
+  #     enable = true;
+  #     defaultCursor = "macOS-Monterey-White";
+  #   };
+  # };
 
   programs.kitty = {
     enable = true;
     font.name = "Fantasque Sans Mono";
     font.size = 20;
-    theme = "Wombat";
+    themeFile = "Wombat";
     keybindings = {
       "shift+alt+." = "no_op";
       "shift+alt+," = "no_op";
@@ -371,6 +371,7 @@ in
     };
 
     shellAliases = {
+      e = "nvim";
       l = "lsd -l";
       ll = "lsd -lA";
       m = "less -FnqRX";
@@ -378,6 +379,7 @@ in
       pi = "TERM=xterm ssh 192.168.2.10 -t \"tmux attach\"";
       lr = "lein repl";
       lf = "lein figwheel";
+      nd = "nix develop";
       nis = "nix-shell";
       nsp = "nix-shell -p";
       tan = "cd ~/projects/tantalus-cljs; nix-shell";
@@ -429,15 +431,6 @@ in
       };
     };
 
-  };
-
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      nonylene.dark-molokai-theme
-      dbaeumer.vscode-eslint
-    ];
   };
 
   programs.chromium = {
