@@ -12,7 +12,12 @@
     ];
 
   # Bootloader.
-  boot.kernelParams = [ "mds=off" "tsx_async_abort=off" "nosmt=force" ];
+  boot.kernelParams = [ "mds=off" "tsx_async_abort=off" "nosmt=force" "rfkill.default_state=1" ];
+  boot.kernelModules = [ "nouveau" "btusb" ];
+  boot.extraModprobeConfig = ''
+    options bluetooth disable_ertm=1
+    options btusb reset=Y enable_autosuspend=N
+  '';
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -72,38 +77,25 @@
 
   services.fwupd.enable = true;
   services.udisks2.enable = true;
-  services.blueman.enable = true;
+  services.blueman.enable = false;
   services.onedrive.enable = true;
   programs.zsh.enable = true;
   # programs.steam.enable = true;
 
   # Enable Wayland support
   security.polkit.enable = true;
-  boot.kernelModules = [ "nouveau" ];
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       mesa
     ];
   };
-  programs.light.enable = true;
-  systemd.user.services.kanshi = {
-    description = "kanshi daemon";
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
-    };
-  };
-
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.sway}/bin/sway";
-        user = "robin";
-      };
-      default_session = initial_session;
-    };
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.wayland.enable = true;
+    autoLogin.enable = true;
+    autoLogin.user = "robin";
   };
 
   fonts.fontDir.enable = true;
@@ -129,45 +121,84 @@
   services.avahi.publish.userServices = true;
 
   # Enable sound with pipewire.
-  services.pulseaudio = {
-    enable = false;
-    package = pkgs.pulseaudioFull;
-    configFile = pkgs.writeText "default.pa" ''
-      load-module module-bluetooth-policy
-      load-module module-bluetooth-discover
-      ## module fails to load with 
-      ##   module-bluez5-device.c: Failed to get device path from module arguments
-      ##   module.c: Failed to load module "module-bluez5-device" (argument: ""): initialization failed.
-      # load-module module-bluez5-device
-      # load-module module-bluez5-discover
-    '';
-    extraConfig = "
-  load-module module-switch-on-connect
-";
-  };
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.dbus.enable = true;
+  services.dbus.packages = [ pkgs.bluez ];
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    package = pkgs.bluez;
     settings = {
       General = {
-        Experimental = true;
         Enable = "Source,Sink,Media,Socket";
+	FastConnectable = true;
+        ControllerMode = "dual";
+	AutoEnable = true;
+      };
+      Policy = {
+        AutoEnable = true;
       };
     };
   };
-  security.rtkit.enable = true;
+  # systemd.targets.bluetooth = {
+  #   wantedBy = [ "multi-user.target" ];
+  # };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    wireplumber = {
+      enable = true;
+      configPackages = [
+        (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+          bluez_monitor.properties = {
+            ["bluez5.enable-sbc-xq"] = true,
+            ["bluez5.enable-msbc"] = true,
+            ["bluez5.enable-hw-volume"] = true,
+            ["bluez5.codecs"] = "[ sbc aac ]",
+            ["bluez5.hfp-backend"] = "none",  -- Disable HFP to avoid RFCOMM errors
+          }
+          
+          bluez_monitor.rules = {
+            {
+              matches = {
+                {{ "device.name", "matches", "bluez_card.*" }},
+              },
+              apply_properties = {
+                ["bluez5.auto-connect"] = "[ a2dp_sink ]",
+                ["bluez5.profile"] = "a2dp-sink",
+              },
+            },
+          }
+      '')
+      ];
+    };
   };
+  
+  # Force Bluetooth power on after KDE loads
+  systemd.user.services.bluetooth-poweron = {
+    description = "Power on Bluetooth adapter";
+    after = [ "graphical-session.target" "plasma-plasmashell.service" ];
+    wants = [ "plasma-plasmashell.service" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 15";
+      ExecStart = "${pkgs.bluez}/bin/bluetoothctl power on";
+      RemainAfterExit = true;
+    };
+  };
+  
+  # Also set KDE to remember Bluetooth state
+  environment.etc."xdg/bluedevilglobalrc".text = ''
+    [Global]
+    launchState=enable
+
+    [Adapters]
+    5C:C5:D4:0D:BA:3C_powered=true
+  '';
 
   # Enable yubikey services and programs
   services.udev.packages = [ pkgs.yubikey-personalization ];
@@ -182,15 +213,22 @@
       debug = true;
       mode = "challenge-response";
     };
-    services.sudo.u2fAuth = true;
-    services.swaylock = {};
+    services = {
+      sudo.u2fAuth = true;
+      "robin" = {
+        kwallet.enable = true;
+	kwallet.package = pkgs.kdePackages.kwallet-pam;
+      };
+      sddm.enableKwallet = true;
+      sddm-greeter.enableKwallet = true;
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.robin = {
     isNormalUser = true;
     description = "Robin Lunn";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "scanner" "lp" "vboxusers" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "scanner" "lp" "vboxusers" "bluetooth" "rtkit" ];
     shell = pkgs.zsh;
   };
 
@@ -201,7 +239,14 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wireguard-tools
-    blueman
+    # blueman
+    kdePackages.bluedevil
+    bluez
+    bluez-tools
+    ldacbt
+    liblc3
+    sbc
+    fdk_aac
     exfatprogs
   ];
   environment.variables = {

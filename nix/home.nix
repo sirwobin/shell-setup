@@ -12,270 +12,19 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [ neovim lsd fzf btop powerline-go zsh-autosuggestions tree which pulseaudioFull
-                               bitwarden bitwarden-cli gscan2pdf tesseract5 silver-searcher
+                               bitwarden bitwarden-cli naps2 silver-searcher
                                libreoffice encfs vlc mpv ranger nomacs difftastic wl-clipboard wallutils
                                networkmanagerapplet
   ];
 
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   package = pkgs.apple-cursor;
-  #   name = "macOS-Monterey-White";
-  #   size = 32; # 22 24 28 32 40 48 56 64 72 80 88 96
-  #   x11 = {
-  #     enable = true;
-  #     defaultCursor = "macOS-Monterey-White";
-  #   };
-  # };
-
   programs.kitty = {
     enable = true;
     font.name = "Fantasque Sans Mono";
-    font.size = 20;
+    font.size = 15;
     themeFile = "Wombat";
     keybindings = {
       "shift+alt+." = "no_op";
       "shift+alt+," = "no_op";
-    };
-  };
-
-  programs.swaylock = {
-    enable = true;
-    settings = {
-      indicator-radius = 110;
-      image = "Pictures/lockscreen-wallpaper/current.jpg";
-    };
-  };
-  services.kanshi.enable = true;
-  services.mako.enable = true;
-
-  services.swayidle = {
-    enable = true;
-    events = [
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
-      { event = "after-resume"; command = "swaymsg \"output\" * dpms on"; }
-    ];
-    timeouts = [
-      { timeout = 300; command = "${pkgs.swaylock}/bin/swaylock"; }
-      { timeout = 600; command = "swaymsg \"output\" * dpms off"; }
-    ];
-  };
-
-  programs.i3status = {
-    enable = true;
-
-    general = {
-      output_format = "i3bar";
-      colors = true;
-      interval = 10;
-#      color_good = "#${colorscheme.dark.green}";
-#      color_degraded = "#${colorscheme.dark.orange}";
-#      color_bad = "#${colorscheme.dark.red}";
-    };
-
-    modules = {
-      load = {
-        position = 0;
-        settings.format = "load: %1min, %5min, %15min ";
-      };
-      memory = {
-        position = 1;
-        settings.format = " MEM %free (%used) ";
-        settings.threshold_degraded = "10%";
-        settings.format_degraded = " LOW %free ";
-      };
-      "battery all" = {
-        position = 2;
-        # settings.format = "%status %percentage %remaining %emptytime";
-        settings.format = " %status %percentage ";
-        settings.format_down = "No battery";
-        settings.status_chr = "⚡";
-        settings.status_bat = "🔋";
-        settings.status_unk = "?";
-        settings.status_full = "☻";
-        settings.path = "/sys/class/power_supply/BAT%d/uevent";
-        settings.low_threshold = "10";
-      };
-      "volume master" = {
-        position = 3;
-        settings.format = " 🔊 %volume ";
-        settings.format_muted = " 🔇 ";
-        settings.device = "default";
-      };
-      time = {
-        position = 4;
-        settings.format = " %Y-%m-%d %H:%M";
-      };
-      ipv6.enable = false;
-      "wireless _first_".enable = false;
-      "ethernet _first_".enable = false;
-      "tztime local".enable = false;
-      "disk /".enable = false;
-    };
-  };
-
-  programs.fuzzel = {
-    enable = true;
-    settings.main.font = "FiraCode Nerd Font Mono:size=25";
-  };
-
-  wayland.windowManager.sway = {
-    enable = true;
-    config = rec {
-      modifier = "Mod4";
-      terminal = "kitty";
-      input = {
-        "type:keyboard" = {
-          xkb_layout = "us";
-          xkb_options = "compose:menu";
-          repeat_delay = "200";
-          repeat_rate = "25";
-        };
-        "type:touchpad" = {
-          tap = "enabled";
-          pointer_accel = "1";
-          click_method = "clickfinger";
-          natural_scroll = "enabled";
-        };
-      };
-      output = {
-        "eDP-1" = {
-          mode = "3200x1800";
-          pos = "600 2160";
-          scale = "1.3";
-        };
-        "HDMI-A-2" = {
-          mode = "3840x2160";
-          pos = "0 0";
-        };
-      };
-
-      fonts = fontConf;
-
-      window = {
-        titlebar = true;
-        border = 2;
-      };
-
-      workspaceOutputAssign = [
-        { workspace = "1"; output = "eDP-1"; }
-        { workspace = "2"; output = "eDP-1"; }
-        { workspace = "3"; output = "eDP-1"; }
-        { workspace = "4"; output = "eDP-1"; }
-        { workspace = "5"; output = "eDP-1"; }
-        { workspace = "6"; output = "HDMI-A-2"; }
-        { workspace = "7"; output = "HDMI-A-2"; }
-        { workspace = "8"; output = "HDMI-A-2"; }
-        { workspace = "9"; output = "HDMI-A-2"; }
-        { workspace = "10"; output = "HDMI-A-2"; }
-      ];
-
-      bars = lib.singleton {
-        statusCommand = lib.getExe pkgs.i3status;
-        command = lib.getExe' pkgs.sway "swaybar";
-        position = "bottom";
-        fonts = fontConf;
-        trayOutput = "*";
-      };
-
-      menu = lib.getExe pkgs.fuzzel;
-
-      startup = [
-        { command = "mako"; }
-        { command = "swayidle"; }
-        { command = "setrandom --mode scale Pictures/desktop-wallpaper"; }
-      ];
-
-      keybindings =
-        let
-          mod = config.wayland.windowManager.sway.config.modifier;
-          inherit (config.wayland.windowManager.sway.config)
-            menu
-            terminal
-            ;
-        in
-        {
-          "${mod}+Return" = "exec ${terminal}";
-          "${mod}+Shift+q" = "kill";
-          "${mod}+d" = "exec ${menu}";
-
-          "${mod}+Left" = "focus left";
-          "${mod}+Down" = "focus down";
-          "${mod}+Up" = "focus up";
-          "${mod}+Right" = "focus right";
-
-          "${mod}+Shift+Left" = "move left";
-          "${mod}+Shift+Down" = "move down";
-          "${mod}+Shift+Up" = "move up";
-          "${mod}+Shift+Right" = "move right";
-
-          "${mod}+Shift+space" = "floating toggle";
-          "${mod}+space" = "focus mode_toggle";
-
-          "${mod}+1" = "workspace number 1";
-          "${mod}+2" = "workspace number 2";
-          "${mod}+3" = "workspace number 3";
-          "${mod}+4" = "workspace number 4";
-          "${mod}+5" = "workspace number 5";
-          "${mod}+6" = "workspace number 6";
-          "${mod}+7" = "workspace number 7";
-          "${mod}+8" = "workspace number 8";
-          "${mod}+9" = "workspace number 9";
-          "${mod}+0" = "workspace number 10";
-
-          "${mod}+Shift+1" = "move container to workspace number 1";
-          "${mod}+Shift+2" = "move container to workspace number 2";
-          "${mod}+Shift+3" = "move container to workspace number 3";
-          "${mod}+Shift+4" = "move container to workspace number 4";
-          "${mod}+Shift+5" = "move container to workspace number 5";
-          "${mod}+Shift+6" = "move container to workspace number 6";
-          "${mod}+Shift+7" = "move container to workspace number 7";
-          "${mod}+Shift+8" = "move container to workspace number 8";
-          "${mod}+Shift+9" = "move container to workspace number 9";
-          "${mod}+Shift+0" = "move container to workspace number 10";
-
-          # Mouse control.  Would rather use warpd.
-          "${mod}+Alt+Left" = "seat - cursor move -90 0";
-          "${mod}+Alt+Right" = "seat - cursor move 90 0";
-          "${mod}+Alt+Up" = "seat - cursor move 0 -90";
-          "${mod}+Alt+Down" = "seat - cursor move 0 90";
-          "${mod}+Control+Left" = "seat - cursor move -10 0";
-          "${mod}+Control+Right" = "seat - cursor move 10 0";
-          "${mod}+Control+Up" = "seat - cursor move 0 -10";
-          "${mod}+Control+Down" = "seat - cursor move 0 10";
-          "${mod}+Control+h" = "seat - cursor press button1";
-          "${mod}+Control+l" = "seat - cursor press button3";
-          "${mod}+Control+j" = "seat - cursor press button5";
-          "${mod}+Control+k" = "seat - cursor press button4";
-
-#          "${mod}+p" = "exec ${lib.getExe pkgs.slurp} | ${lib.getExe pkgs.grim} -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
-
-#          "${mod}+h" = "split h";
-#          "${mod}+v" = "split v";
-          "${mod}+w" = "exec setrandom --mode scale Pictures/desktop-wallpaper";
-          "${mod}+z" = "fullscreen toggle";
-          "${mod}+period" = "layout tabbed";
-          "${mod}+slash" = "layout toggle split";
-          "${mod}+a" = "focus parent";
-          "${mod}+s" = "focus child";
-
-          "${mod}+r" = "mode resize";
-
-          "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock";
-          "${mod}+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss";
-          "${mod}+Shift+k" = "exec ${lib.getExe' pkgs.mako "makoctl"} dismiss -a";
-
-          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86ScreenSaver" = "exec systemctl hibernate";
-          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 10";
-          "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 10";
-          "XF86TouchpadToggle" = "exec sound-follow-monitor.sh";
-
-          "${mod}+minus" = "scratchpad show";
-          "${mod}+underscore" = "move container to scratchpad";
-        };
     };
   };
 
@@ -421,7 +170,7 @@ in
   programs.git = {
     enable = true;
     userName = "robin";
-    userEmail = "robin108@gmail.com";
+    userEmail = "***@gmail.com";
     ignores = [ "rl-notes*" "*.swp" ];
     extraConfig = {
       init = {
@@ -435,7 +184,6 @@ in
 
   programs.chromium = {
     enable = true;
-    commandLineArgs = [ "--force-device-scale-factor=1.5" ];
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; }  # Bitwarden
       { id = "fhcgjolkccmbidfldomjliifgaodjagh"; }  # cookie autodelete
